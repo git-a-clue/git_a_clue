@@ -13,3 +13,6 @@ Are you bored in quarantine?  Do you love true-crimey murders? Are you a smarty 
 
 ## Domain Model
 ![Domain Model](assets/dm.jpeg)
+
+## Resources 
+[how to add color to text prints](https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html)
