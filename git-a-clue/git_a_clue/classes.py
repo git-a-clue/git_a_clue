@@ -2,7 +2,7 @@
 # card class with
 
 # suspects 
-# weapons
+# gadgets
 # room 
 
 # full list minus solution and player cards--possible computer hints
