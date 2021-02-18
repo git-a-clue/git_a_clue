@@ -15,6 +15,7 @@ Mr Body needs your help to bring his killer to justice.
 print(greeting)
 # figure out how to format as a column
 # add colors via https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
+print("Type (start) to investigate")
 menu()
 # wait for input and direct with logic
 
@@ -61,6 +62,13 @@ for i in range(1,4):
 
 print("Here are your leads. Use them wisely.")
 print(player_hand)
+
+print("What would you like to do next? ")
+menu()
+user_next_option = normalize(input("> "))
+
+
+check_guess('s1', 'g2', 'r3')
 
 # play('assets/creeky_door.mp3')
 
