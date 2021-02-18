@@ -1,4 +1,5 @@
 from main_logic import *
+from playsound import playsound
 # display welcome laptop
 
 # display greeting
@@ -15,10 +16,9 @@ print(greeting)
 # figure out how to format as a column
 # add colors via https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
 print("Type (start) to investigate")
-print("Type (rules) to view the brief")
-print("Type (quit) to leave John's death a mystery")
+menu()
 # wait for input and direct with logic
-normalize(input("> "))
+
 
 choose_avatar = f"""
 Please choose you avatar from the following list.
@@ -31,6 +31,8 @@ e for {suspects[4]}
 f for {suspects[5]}
 
 """
+print(choose_avatar)
+
 # May need to revisit dict referencing
 lib = {
     'a': 0,
@@ -47,8 +49,9 @@ start_game_deal_cards(suspects, solution_list)
 start_game_deal_cards(gadgets, solution_list)
 start_game_deal_cards(rooms, solution_list)
 
+
 print(f"Alright Detective {avatar1}. Welcome to Git_A_Clue. Let's go solve a murder!")
-for i in range(3):
+for i in range(1,4):
     for j in range(2):
         if i == 1:
             start_game_deal_cards(suspects, player_hand)
@@ -59,6 +62,16 @@ for i in range(3):
 
 print("Here are your leads. Use them wisely.")
 print(player_hand)
+
+print("What would you like to do next? ")
+menu()
+user_next_option = normalize(input("> "))
+
+
+check_guess('s1', 'g2', 'r3')
+
+# play('assets/creeky_door.mp3')
+
 
 # Roll dice
 
