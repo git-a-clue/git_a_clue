@@ -1,4 +1,6 @@
 import time
+from playsound import playsound
+from random import random
 # time adds suspense...
 
 # Welcome message
@@ -69,6 +71,10 @@ def normalize(string):
 
 # Some stuffffffff
 
+# Play sounds
+
+def play(file):
+    playsound(input(file))
 
 # Do you want to quit?
 
