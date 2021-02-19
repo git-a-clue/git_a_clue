@@ -5,6 +5,7 @@ def menu():
     print("Type (roll) to continue play")
     print("Type (rules) to view the brief")
     print("Type (hand) to view your leads")
+    print("Type (room) to be reminded of where you are")
     print("Type (quit) to leave John's death a mystery")
     # response = normalize(input("> "))
     
@@ -16,9 +17,11 @@ def menu():
         rules()
     elif response == ("hand")
         print(player_hand)
-    if response == ("quit"):
+    elif response == ("quit"):
         # end_game()
         pass
+    elif response == ("room"):
+        print(current_room)
     else:
         print ("Please try again")
         

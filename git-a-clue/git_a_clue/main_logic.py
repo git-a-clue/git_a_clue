@@ -128,17 +128,20 @@ def eligible_rooms():
             rand_idx = random_helper(1,len(move_rooms))
             # do not show player current room or duplicate room in possible moves
             if move_rooms[rand_idx] == current_room or move_rooms[rand_idx] in poss_move:
-                # create one more loop and forget this one
+                # do nothing, forget this loop, but need to add one more to loop counter
                 roll +=1
             else:
                 poss_move.append(move_rooms[num])
     return poss_move
   
 def move_me_there():
-        print("Pick between these rooms:")
-    
-    return where
-    pass
+    alpha = ['a', 'b', 'c', 'd', 'e','f','g']
+    your_rooms = eligible_rooms()
+    print ('Your rooms include:')
+    for i in range(your_rooms):
+        print(f'{alpha[i]} for {your_rooms[i]}')
+        # prompt for choice in prompt.py
+
 # Play sounds
 
 # def play(file):
