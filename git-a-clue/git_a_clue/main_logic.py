@@ -93,17 +93,54 @@ def check_guess(L1, L2, L3):
 
 
 
-def menu():
-    print("Type (rules) to view the brief")
-    print("Type (hand) to view your leads")
-    print("Type (quit) to leave John's death a mystery")
-    # response = normalize(input("> "))
-    # return response
+# def menu():
+#     print("Type (rules) to view the brief")
+#     print("Type (hand) to view your leads")
+#     print("Type (quit) to leave John's death a mystery")
+#     # response = normalize(input("> "))
+#     # return response
 
 def normalize(string):
     return string.lower()
 
-# Some stuffffffff
+# Round of play
+# def play_a_turn():
+rounds = 0
+current_room = None
+
+
+def roll_dice():
+    roll = random_helper(1,6)
+    return roll
+
+def eligible_rooms():
+    roll = roll_dice()
+    poss_move = []
+    index = 0
+    if roll == 6:
+        poss_move = move_rooms
+        if current_room != None:
+            poss_move.remove(current_room)
+            
+    else:
+        # generate same number of random indices as the dice roll
+        for num in roll:
+            rand_idx = random_helper(1,len(move_rooms))
+            # do not show player current room or duplicate room in possible moves
+            if move_rooms[rand_idx] == current_room or move_rooms[rand_idx] in poss_move:
+                # do nothing, forget this loop, but need to add one more to loop counter
+                roll +=1
+            else:
+                poss_move.append(move_rooms[num])
+    return poss_move
+  
+def move_me_there():
+    alpha = ['a', 'b', 'c', 'd', 'e','f','g']
+    your_rooms = eligible_rooms()
+    print ('Your rooms include:')
+    for i in range(your_rooms):
+        print(f'{alpha[i]} for {your_rooms[i]}')
+        # prompt for choice in prompt.py
 
 # Play sounds
 

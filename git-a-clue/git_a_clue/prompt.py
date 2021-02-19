@@ -23,7 +23,7 @@ menu()
 choose_avatar = f"""
 Please choose you avatar from the following list.
 Type:
-a for {suspects[0]}
+a for {suspects[0]} #poss_move[0]
 b for {suspects[1]}
 c for {suspects[2]}
 d for {suspects[3]}
@@ -33,6 +33,7 @@ f for {suspects[5]}
 """
 print(choose_avatar)
 
+
 # May need to revisit dict referencing
 lib = {
     'a': 0,
@@ -40,9 +41,18 @@ lib = {
     'c': 2,
     'd': 3,
     'e': 4,
-    'f': 5
+    'f': 5,
+    'g': 6,
+    'check': 
 }
 user1_choice = normalize(input("> "))
+user_room_choice = normalize(input("> "))
+
+# if user_room_choice is not in list, print dummmmmmy!
+
+if user1_choice = 6:
+    print("Vince has declined to participate")
+    
 avatar1 = suspects[lib[user1_choice]]
 
 start_game_deal_cards(suspects, solution_list)
