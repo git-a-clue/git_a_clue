@@ -40,9 +40,15 @@ lib = {
     'c': 2,
     'd': 3,
     'e': 4,
-    'f': 5
+    'f': 5,
+    'g': 6,
+    'check': 
 }
 user1_choice = normalize(input("> "))
+
+if user1_choice = 6:
+    print("Vince has declined to participate")
+    
 avatar1 = suspects[lib[user1_choice]]
 
 start_game_deal_cards(suspects, solution_list)

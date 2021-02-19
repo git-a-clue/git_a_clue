@@ -103,8 +103,42 @@ def check_guess(L1, L2, L3):
 def normalize(string):
     return string.lower()
 
-# Some stuffffffff
+# Round of play
+# def play_a_turn():
+rounds = 0
+current_room = None
 
+
+def roll_dice():
+    roll = random_helper(1,6)
+    return roll
+
+def eligible_rooms():
+    roll = roll_dice()
+    poss_move = []
+    index = 0
+    if roll == 6:
+        poss_move = move_rooms
+        if current_room != None:
+            poss_move.remove(current_room)
+            
+    else:
+        # generate same number of random indices as the dice roll
+        for num in roll:
+            rand_idx = random_helper(1,len(move_rooms))
+            # do not show player current room or duplicate room in possible moves
+            if move_rooms[rand_idx] == current_room or move_rooms[rand_idx] in poss_move:
+                # create one more loop and forget this one
+                roll +=1
+            else:
+                poss_move.append(move_rooms[num])
+    return poss_move
+  
+def move_me_there():
+        print("Pick between these rooms:")
+    
+    return where
+    pass
 # Play sounds
 
 # def play(file):
