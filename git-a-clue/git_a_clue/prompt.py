@@ -43,8 +43,9 @@ lib = {
     'e': 4,
     'f': 5,
     'g': 6,
-    'check': 
+    'check': None
 }
+
 user1_choice = normalize(input("> "))
 user_room_choice = normalize(input("> "))
 
