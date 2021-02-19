@@ -1,4 +1,6 @@
 import os
+from main_logic import normalize
+import time
 
 
 def menu():
@@ -7,7 +9,7 @@ def menu():
     print("Type (hand) to view your leads")
     print("Type (room) to be reminded of where you are")
     print("Type (quit) to leave John's death a mystery")
-    # response = normalize(input("> "))
+    response = normalize(input("> "))
     
     if response == ("roll"):
         pass
@@ -15,15 +17,18 @@ def menu():
         # what to do if they look at rules in flow and not before a roll??
     elif response == ("rules"):
         rules()
-    elif response == ("hand")
-        print(player_hand)
+    elif response == ("hand"):
+        # print(player_hand)
+        pass
     elif response == ("quit"):
         # end_game()
         pass
     elif response == ("room"):
-        print(current_room)
+        # print(current_room)
+        pass
     else:
         print ("Please try again")
+        menu()
         
     # return response
     
@@ -57,5 +62,13 @@ def rules():
         5. You've only got one chance at your final whiteboard, so study hard
     """
     # clear screen and re-display menu
+    print(rules)
+    time.sleep(5)
     os.system('cls' if os.name == 'nt' else 'clear')
     menu()
+
+
+# testing function calls 
+
+
+rules()
