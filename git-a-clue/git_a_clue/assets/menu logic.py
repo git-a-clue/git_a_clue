@@ -1,3 +1,4 @@
+import os
 
 
 def menu():
@@ -25,7 +26,6 @@ def menu():
     
     
 def rules(): 
-    # clear screen
     rules = """
         Solve the murder of John Cokos:
         1. Roll the dice to move from room to room
@@ -51,4 +51,6 @@ def rules():
             - 
         5. You've only got one chance at your final whiteboard, so study hard
     """
+    # clear screen and re-display menu
+    os.system('cls' if os.name == 'nt' else 'clear')
     menu()
