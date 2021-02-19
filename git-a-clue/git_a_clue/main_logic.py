@@ -93,12 +93,12 @@ def check_guess(L1, L2, L3):
 
 
 
-def menu():
-    print("Type (rules) to view the brief")
-    print("Type (hand) to view your leads")
-    print("Type (quit) to leave John's death a mystery")
-    # response = normalize(input("> "))
-    # return response
+# def menu():
+#     print("Type (rules) to view the brief")
+#     print("Type (hand) to view your leads")
+#     print("Type (quit) to leave John's death a mystery")
+#     # response = normalize(input("> "))
+#     # return response
 
 def normalize(string):
     return string.lower()

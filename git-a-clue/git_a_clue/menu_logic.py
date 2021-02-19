@@ -9,6 +9,7 @@ def menu():
     # response = normalize(input("> "))
     
     if response == ("roll"):
+        pass
         # roll_dice()
         # what to do if they look at rules in flow and not before a roll??
     elif response == ("rules"):
@@ -17,6 +18,7 @@ def menu():
         print(player_hand)
     if response == ("quit"):
         # end_game()
+        pass
     else:
         print ("Please try again")
         
