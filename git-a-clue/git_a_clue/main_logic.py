@@ -168,6 +168,6 @@ class Clue_Logic:
 
 
 
-if __name__ == "__main__":
-    test_logic = Clue_Logic()
-    test_logic.eligible_rooms(5)
+# if __name__ == "__main__":
+#     test_logic = Clue_Logic()
+#     test_logic.eligible_rooms(5)

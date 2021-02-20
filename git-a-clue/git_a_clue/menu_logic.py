@@ -77,8 +77,7 @@ class Menu_Logic:
         print(rules)
         time.sleep(5)
         os.system('cls' if os.name == 'nt' else 'clear')
-        # need to check if it's thier 1st time - if so, will need to go to different menu
-        # menu()
+
 
 
 # testing function calls 
