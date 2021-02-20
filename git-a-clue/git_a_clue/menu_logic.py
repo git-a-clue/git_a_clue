@@ -1,5 +1,5 @@
 import os
-from main_logic import *
+from git_a_clue.main_logic import *
 # from prompt import *
 import time
 
