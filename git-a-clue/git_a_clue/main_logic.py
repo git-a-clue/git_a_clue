@@ -1,6 +1,8 @@
 import time
 # from playsound import playsound
 import random
+
+
 # time adds suspense...
 
 # Welcome message
@@ -17,137 +19,155 @@ import random
 ## call the card classes and remove 6 with random index of two of each s/w/r
 ## remaining is computer hints
 
-suspects = ['s1', 's2', 's3', 's4', 's5', 's6']
-gadgets = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6']
-rooms = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7']
-move_rooms = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7']
-solution_list = [] # call start_game_deal_cards on each list_from 
-player_hand = [] # call start_game_deal_cards 2x each list_from
-
-# courtyard: just prompt
-
-def start_game_deal_cards(list_from, list_to):
-    """ Called for solution and pass s/w/r as list_from with list_to = solution; 
-    Called as player hand and pass 2x s/w/r as list-from with list_to = player_hand """
-    random_number = random_helper(0, len(list_from) - 1)
-    card = list_from[random_number]
-    list_to.append(card)
-    list_from.remove(card)
-
-def random_helper(start, stop):
-    random_number = random.randint(start, stop)
-    return random_number
 
 
-def check_guess(L1, L2, L3):
-    """ randomize order of comparing lists; remember to pass in (suspect, gadget, room) """
-    check = random_helper(1,3)
+
+class Clue_Logic: 
+
+    suspects = ['s1', 's2', 's3', 's4', 's5', 's6']
+    perma_suspects = ['s1', 's2', 's3', 's4', 's5', 's6']
+    gadgets = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6']
+    perma_gadgets = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6']
+    rooms = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7']
+    move_rooms = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7']
+    solution_list = [] # call start_game_deal_cards on each list_from 
+    player_hand = [] # call start_game_deal_cards 2x each list_from
+    available_rooms_check = []
+
+    def __init__(self, rounds=0, current_room='Front Desk - Roll the dice to explore campus'):
+        #moving rounds
+        self.rounds = rounds
+        self.current_room = current_room
+
+    def normalize(self, string):
+        return string.lower()
+
+    def start_game_deal_cards(self, list_from, list_to):
+        """ Called for solution and pass s/w/r as list_from with list_to = solution; 
+        Called as player hand and pass 2x s/w/r as list-from with list_to = player_hand """
+        random_number = self.random_helper(0, len(list_from) - 1)
+        card = list_from[random_number]
+        list_to.append(card)
+        list_from.remove(card)
+
+
+
+    def random_helper(self, start, stop):
+        random_number = random.randint(start, stop)
+        return random_number
+
+    def solution_deal(self):
+        self.start_game_deal_cards(self.suspects, self.solution_list)
+        self.start_game_deal_cards(self.gadgets, self.solution_list)
+        self.start_game_deal_cards(self.rooms, self.solution_list)
+        print("CHEAT", self.solution_list)
     
-    if check == 1:
-        if L1 in suspects:
-            print(f"Not this time we have {L1}")
-            # display menu for next option
-            
-        elif L2 in gadgets:
-            print(f"Not this time we have {L2}")
-            # display menu for next option
-            
-        elif L3 in rooms:
-            print(f"Not this time we have {L3}")
-            # display menu for next option
+    def player_hand_deal(self):
+        for i in range(1,4):
+            for j in range(2):
+                if i == 1:
+                    self.start_game_deal_cards(self.suspects, self.player_hand)
+                if i == 2:
+                    self.start_game_deal_cards(self.gadgets, self.player_hand)
+                if i == 3:
+                    self.start_game_deal_cards(self.rooms, self.player_hand)
+    
 
-        else:
-            print("Sorry no help here!")
-
-    if check == 2:
-        if L2 in gadgets:
-            print(f"Not this time we have {L2}")
-            # display menu for next option
-            
-        elif L3 in rooms:
-            print(f"Not this time we have {L3}")
-            # display menu for next option
-            
-        elif L1 in suspects:
-            print(f"Not this time we have {L1}")
-            # display menu for next option
-            
-        else:
-            print("Sorry no help here!")
-
-    if check == 3:
-        if L3 in rooms:
-            print(f"Not this time we have {L3}")
-            # display menu for next option
-            
-        elif L1 in suspects:
-            print(f"Not this time we have {L1}")
-            # display menu for next option
-            
-        elif L2 in gadgets:
-            print(f"Not this time we have {L2}")
-            # display menu for next option
-            
-        else:
-            print("Sorry no help here!")
-
-
-
-# def menu():
-#     print("Type (rules) to view the brief")
-#     print("Type (hand) to view your leads")
-#     print("Type (quit) to leave John's death a mystery")
-#     # response = normalize(input("> "))
-#     # return response
-
-def normalize(string):
-    return string.lower()
-
-# Round of play
-# def play_a_turn():
-rounds = 0
-current_room = None
-
-
-def roll_dice():
-    roll = random_helper(1,6)
-    return roll
-
-def eligible_rooms():
-    roll = roll_dice()
-    poss_move = []
-    index = 0
-    if roll == 6:
-        poss_move = move_rooms
-        if current_room != None:
-            poss_move.remove(current_room)
-            
-    else:
-        # generate same number of random indices as the dice roll
-        for num in roll:
-            rand_idx = random_helper(1,len(move_rooms))
-            # do not show player current room or duplicate room in possible moves
-            if move_rooms[rand_idx] == current_room or move_rooms[rand_idx] in poss_move:
-                # do nothing, forget this loop, but need to add one more to loop counter
-                roll +=1
+    def check_guess(self, L1, L2, L3):
+        """ randomize order of comparing lists; remember to pass in (suspect, gadget, room) """
+        check = self.random_helper(1,3)
+        
+        if check == 1:
+            if L1 in self.suspects:
+                print(f"Not this time we have {L1}")
+                # display menu for next option
+                
+            elif L2 in self.gadgets:
+                print(f"Not this time we have {L2}")
+                # display menu for next option
+                
+            elif L3 in self.rooms:
+                print(f"Not this time we have {L3}")
+                # display menu for next option
             else:
-                poss_move.append(move_rooms[num])
-    return poss_move
-  
-def move_me_there():
-    alpha = ['a', 'b', 'c', 'd', 'e','f','g']
-    your_rooms = eligible_rooms()
-    print ('Your rooms include:')
-    for i in range(your_rooms):
-        print(f'{alpha[i]} for {your_rooms[i]}')
-        # prompt for choice in prompt.py
+                print("Sorry no help here!")
+        if check == 2:
+            if L2 in self.gadgets:
+                print(f"Not this time we have {L2}")
+                # display menu for next option
+                
+            elif L3 in self.rooms:
+                print(f"Not this time we have {L3}")
+                # display menu for next option
+                
+            elif L1 in self.suspects:
+                print(f"Not this time we have {L1}")
+                # display menu for next option
+                
+            else:
+                print("Sorry no help here!")
+        if check == 3:
+            if L3 in self.rooms:
+                print(f"Not this time we have {L3}")
+                # display menu for next option
+                
+            elif L1 in self.suspects:
+                print(f"Not this time we have {L1}")
+                # display menu for next option
+                
+            elif L2 in self.gadgets:
+                print(f"Not this time we have {L2}")
+                # display menu for next option
+                
+            else:
+                print("Sorry no help here!")
+        # self.prompt.type_of_guess()
 
-# Play sounds
 
-# def play(file):
-#     playsound((file))
+    def roll_dice(self):
+        roll = self.random_helper(1,6)
+        return roll
 
-# Do you want to quit?
+    def eligible_rooms(self):
+        perma_roll = self.roll_dice()
+        roll = perma_roll
+        # print("ROLL", roll)
+        #store variables
+        alpha = ['a', 'b', 'c', 'd', 'e','f','g']
+        poss_move = []
+        index = 0
+        #edge case - if roll is 6, can pick from any room
+        if roll == 6:
+            poss_move = self.move_rooms
+            #remove current room from list
+            if self.current_room != "Front Desk - Roll the dice to explore campus":
+                poss_move.remove(self.current_room)
+                available_rooms_check = []
+                available_rooms_check.append(poss_move)
+                return poss_move, roll      
+        #happy path - if roll is 1-5, generate random rooms
+        else:
+            # generate same number of random indices as the dice roll
+            while len(poss_move) < roll:
+                rand_idx = self.random_helper(0, len(self.move_rooms)-1)
+                if self.move_rooms[rand_idx] == self.current_room or self.move_rooms[rand_idx] in poss_move:
+                    continue
+                else: 
+                    poss_move.append(self.move_rooms[rand_idx])
+        available_rooms_check = []
+        return poss_move, roll
+    
+    def reset_tables(self):
+        self.solution_list.clear()
+        self.player_hand.clear()
+        self.available_rooms_check.clear()
+        self.suspects = self.perma_suspects
+        self.gadgets = self.perma_gadgets
+        self.rooms = self.move_rooms
+        self.current_room = "Front Desk - Roll the dice to explore campus"
 
-# end of game = reset all lists 
 
+
+if __name__ == "__main__":
+    test_logic = Clue_Logic()
+    test_logic.eligible_rooms(5)
