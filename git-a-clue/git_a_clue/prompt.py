@@ -55,7 +55,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif response == "rules":
-                    menu.rules()
+                    self.menu.menu.rules()
                     print("Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery.")
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
@@ -105,7 +105,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "rules":
-                    menu.rules()
+                    self.menu.menu.rules()
                     print("Type:")
                     print(self.sus_helper())
                     user_next_option = self.logic.normalize(input("> "))

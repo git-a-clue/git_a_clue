@@ -161,9 +161,9 @@ class Clue_Logic:
         self.solution_list.clear()
         self.player_hand.clear()
         self.available_rooms_check.clear()
-        self.suspects = perma_suspects
-        self.gadgets = perma_gadgets
-        self.rooms = move_rooms
+        self.suspects = self.perma_suspects
+        self.gadgets = self.perma_gadgets
+        self.rooms = self.move_rooms
         self.current_room = "Front Desk - Roll the dice to explore campus"
 
 
