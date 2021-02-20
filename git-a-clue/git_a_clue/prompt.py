@@ -1,5 +1,5 @@
-from main_logic import Clue_Logic
-from menu_logic import Menu_Logic
+from git_a_clue.main_logic import Clue_Logic
+from git_a_clue.menu_logic import Menu_Logic
 # from playsound import playsound
 import time
 import os
