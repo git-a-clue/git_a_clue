@@ -7,7 +7,6 @@ authors = ["KIMBERLY DAMALAS <kimatcamp@yahoo.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 pytest = "^6.0"
-AppKit = "^0.2.8"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^20.8b1", allow-prereleases = true}
