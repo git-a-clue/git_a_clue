@@ -141,7 +141,7 @@ class Clue_Logic:
             poss_move = self.move_rooms
             #remove current room from list
             if self.current_room != "Front Desk - Roll the dice to explore campus":
-                poss_move.remove(self.current_room)
+                poss_move.remove(self.current_room[0])
                 available_rooms_check = []
                 available_rooms_check.append(poss_move)
                 return poss_move, roll      
@@ -150,7 +150,7 @@ class Clue_Logic:
             # generate same number of random indices as the dice roll
             while len(poss_move) < roll:
                 rand_idx = self.random_helper(0, len(self.move_rooms)-1)
-                if self.move_rooms[rand_idx] == self.current_room or self.move_rooms[rand_idx] in poss_move:
+                if self.move_rooms[rand_idx] == self.current_room[0] or self.move_rooms[rand_idx] in poss_move:
                     continue
                 else: 
                     poss_move.append(self.move_rooms[rand_idx])
@@ -161,10 +161,12 @@ class Clue_Logic:
         self.solution_list.clear()
         self.player_hand.clear()
         self.available_rooms_check.clear()
-        self.suspects = self.perma_suspects
-        self.gadgets = self.perma_gadgets
-        self.rooms = self.move_rooms
+        self.suspects = ['s1', 's2', 's3', 's4', 's5', 's6']
+        self.gadgets = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6']
+        self.rooms = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7']
         self.current_room = "Front Desk - Roll the dice to explore campus"
+
+        
 
 
 
