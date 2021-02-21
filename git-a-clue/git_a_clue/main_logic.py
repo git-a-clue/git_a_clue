@@ -166,6 +166,8 @@ class Clue_Logic:
         self.rooms = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7']
         self.current_room = "Front Desk - Roll the dice to explore campus"
 
+        
+
 
 
 # if __name__ == "__main__":
