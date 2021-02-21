@@ -10,7 +10,6 @@ import os
 
 
 class Prompt:
-    # May need to revisit dict referencing
     lib = {
         'a': 0,
         'b': 1,
@@ -43,10 +42,8 @@ class Prompt:
         user_input = input("> ")
         response = self.logic.normalize(user_input)          
         def check_input(user_input):
-            print("USER INPUTTTTT", user_input)
             #Check if input is outside of people choices
             if user_input == "play" or user_input == "p":
-                print("Enter PLAYYYYYYYY")
                 self.pick_a_player()
             #check input against menu prompts
             elif self.menu.menu_validation(user_input) == True:
@@ -56,7 +53,7 @@ class Prompt:
                     self.sus_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
-                elif response == "rules":
+                elif user_input == "rules":
                     self.menu.rules()
                     print("Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery.")
                     user_next_option = self.logic.normalize(input("> "))
@@ -71,7 +68,7 @@ class Prompt:
                     print("Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery.")
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
-                else:
+                elif user_input == "quit":
                     self.leave_boddy_on_read()
             else:
                 print("Please enter a valid option.")
@@ -93,14 +90,14 @@ class Prompt:
         def check_input(user_input):
             #Check if input is outside of people choices
             if user_input == 'g':
-                print("Aaron was out of town, pick a suspect from the list")
+                print("Aaron was out of town, pick an avatar from the list")
                 print("Type:")
                 self.sus_helper()
                 user_next_option = self.logic.normalize(input("> "))
                 check_input(user_next_option)     
             #check to ensure input is in the available options          
             elif user_input in self.lib.keys():
-                self.avatar = self.logic.perma_suspects[self.lib[response]]
+                self.avatar = self.logic.perma_suspects[self.lib[user_input]]
                 #CALL THE NEXT FUNCTION
                 self.time_to_deal_and_pick(self.avatar)
             #checks input against menu options
@@ -113,6 +110,7 @@ class Prompt:
                     check_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
+                    print("Before we play, pick an avatar.")
                     print("Type:")
                     self.sus_helper()
                     user_next_option = self.logic.normalize(input("> "))
@@ -122,6 +120,7 @@ class Prompt:
                     print("Type:")
                     self.sus_helper()
                     user_next_option = self.logic.normalize(input("> "))
+                    check_input(user_next_option)
                 elif user_input == "room":
                     print("Currently at the Front Desk, ready to play.")
                     print("Type:")
@@ -130,12 +129,9 @@ class Prompt:
                     check_input(user_next_option) 
                 else:
                     self.leave_boddy_on_read()
-                # else:
-                #     menu.menu_helper(user_input)
-            #If all else fails, re-print rooms & call the function recursively
             else:
                 #Should we make this line red??
-                print("Please choose from available suspects:")
+                print("Vince's alibi checked out please choose from below:")
                 print("Type:")
                 self.sus_helper()
                 user_next_option = self.logic.normalize(input("> "))
@@ -196,7 +192,7 @@ class Prompt:
                     self.leave_boddy_on_read()
             else:
                 #Should we make this line red??
-                print("Please choose from available menu choices:")
+                print("Please choose from available menu choices.")
                 print("Please choose from menu:")
                 self.menu.menu()
                 user_next_option = self.logic.normalize(input("> "))
@@ -211,11 +207,14 @@ class Prompt:
         rooms, roll = self.logic.eligible_rooms()
         print(f"You've rolled a {roll}")
         print ('Pick a room to move to:')
+        murder_rooms = []
         for i in range(len(rooms)):
-            print(f'{alpha[i]} for {rooms[i]}')
+            room_loop = f'({alpha[i]}) for {rooms[i]}'
+            print(room_loop)
+            murder_rooms.append(room_loop)
             self.logic.available_rooms_check.append(rooms[i])
         response = self.logic.normalize(input("> "))
-
+        # print("ROOOOOLLLLLLINNNNNNNGGGGGGGG ROOOOOMMMM", murder_rooms)
         # Response = room choice >
         #validate input > 
         #set current room
@@ -224,47 +223,63 @@ class Prompt:
         def check_input(user_input):
             #check to ensure input is a-g
             if user_input in self.lib.keys():
-                #get room name
-                room_choice = rooms[self.lib[user_input]]
-                #Happy path - check to be sure room is AVAILABLE
-                if room_choice in self.logic.available_rooms_check:
-                    self.logic.current_room = []
-                    self.logic.current_room.append(rooms[self.lib[user_input]])
-                    #print out new location (ascii)??
-                    print(f"Moving to the {self.logic.current_room[0]}...")
-                    time.sleep(1)
-                    #CALL THE NEXT FUNCTION
-                    self.sus_accusation()
-                #else re-prompt
-                else:
-                    print("Please choose from available rooms:")        
-                    print(rooms)
+                if len(rooms) < self.lib[user_input] + 1:
+                    print("Please choose from available rooms:")  
+                    print("Type:")      
+                    print(murder_rooms)
                     user_next_option = self.logic.normalize(input("> "))
-                    check_input(user_next_option)  
+                    check_input(user_next_option)
+                else:
+                    room_choice = rooms[self.lib[user_input]]
+                
+                #Happy path - check to be sure room is AVAILABLE
+                    if room_choice in self.logic.available_rooms_check:
+                        self.logic.current_room = []
+                        self.logic.current_room.append(rooms[self.lib[user_input]])
+                        #TODO print out new location (ascii)??
+                        print(f"Moving to the {self.logic.current_room[0]}...")
+                        time.sleep(1)
+                        #CALL THE NEXT FUNCTION
+                        self.sus_accusation()
+                #else re-prompt
+                    else:
+                        print("Please choose from available rooms:")  
+                        print("Type:")      
+                        print(murder_rooms)
+                        user_next_option = self.logic.normalize(input("> "))
+                        check_input(user_next_option)  
             #checks input against menu options
             elif self.menu.menu_validation(user_input) == True:
                 if user_input == "roll":
                     print("Cannot re-roll mid turn.")
+                    print("   ")
+                    print("Please choose from available rooms:")                 
                     print("Type:")
-                    print(rooms)
+                    print(murder_rooms)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
+                    print("   ")
+                    print("Please choose from available rooms:")
                     print("Type:")
-                    print(rooms)
+                    print(murder_rooms)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
-                    print(self.logic.player_hand)
+                    print("This is your hand ", str(self.logic.player_hand).strip('['']'))
+                    print("   ")
+                    print("Please choose from available rooms:")
                     print("Type:")
-                    print(rooms)
+                    print(murder_rooms)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
-                    print(self.logic.current_room)
+                    print("You're current in ", str(self.logic.current_room))
+                    print("   ")
+                    print("Please choose from available rooms:")
                     print("Type:")
-                    print(rooms)
+                    print(murder_rooms)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 else:
@@ -273,7 +288,8 @@ class Prompt:
             #If all else fails, re-print rooms & call the function recursively
             else:
                 #Should we make this line red??
-                print("Please choose from available rooms:")        
+                print("Please choose from available rooms:")  
+                print("Type:")      
                 print(rooms)
                 user_next_option = self.logic.normalize(user_input("> "))
                 check_input(user_next_option)    
@@ -283,8 +299,8 @@ class Prompt:
 
 
     def sus_accusation(self):
-        print("Time to investigate & interogate...")
-        print(f"Now that you're in the {self.logic.current_room[0]}, who do you think commited this heinous crime?!")
+        print("Time to investigate & interrogate...")
+        print(f"Now that you're in the {self.logic.current_room[0]}, who do you think committed this heinous crime?!")
         print("Type:")
         self.sus_helper()
         L1 = self.logic.normalize(input("> "))
@@ -292,7 +308,7 @@ class Prompt:
         def check_input(user_input):
             #Check if input is outside of people choices
             if user_input == 'g':
-                print("Please choose from available suspects:")
+                print("John thinks your code sucks, please choose from available suspects.")
                 print("Type:")
                 self.sus_helper()
                 user_next_option = self.logic.normalize(input("> "))
@@ -307,24 +323,32 @@ class Prompt:
             elif self.menu.menu_validation(user_input) == True:
                 if user_input == "roll":
                     print("Cannot re-roll mid turn.")
+                    print("  ")
+                    print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
+                    print("  ")
+                    print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
-                    print(self.logic.player_hand)
+                    print("This is your hand ", str(self.logic.player_hand).strip('[]'))
+                    print("  ")
+                    print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
-                    print(self.logic.current_room)
+                    print("You are currently in ", str(self.logic.current_room))
+                    print("  ")
+                    print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
                     user_next_option = self.logic.normalize(input("> "))
@@ -368,24 +392,32 @@ class Prompt:
             elif self.menu.menu_validation(user_input) == True:
                 if user_input == "roll":
                     print("Cannot re-roll mid turn.")
+                    print("  ")
+                    print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
+                    print("  ")
+                    print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
-                    print(self.logic.player_hand)
+                    print("This is your hand ", str(self.logic.player_hand))
+                    print("  ")
+                    print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
-                    print(self.logic.current_room)
+                    print("You're currently in ", str(self.logic.current_room))
+                    print("  ")
+                    print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
                     user_next_option = self.logic.normalize(input("> "))
@@ -405,7 +437,14 @@ class Prompt:
 
 
     def type_of_guess(self):
-        print("Would you like to make a (final) accusation or (roll) again? **WARNING** Making a final accustion will end the game")
+        roll_or_warning = """
+
+        Would you like to (roll) again or make a (final) accusation? 
+
+        **************** WARNING **************** 
+        Making a final accusation will end the game
+        """
+        print(roll_or_warning)
         response = self.logic.normalize(input("> "))
 
         def check_input(user_input):
@@ -417,17 +456,17 @@ class Prompt:
                     self.roll_and_rooms()
                 elif user_input == "rules":
                     self.menu.rules()
-                    print("Would you like to make a (final) accusation or (roll) again? WARNING: Making a final accustion will end the game")
+                    print(roll_or_warning)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
-                    print(self.logic.player_hand)
-                    print("Would you like to make a (final) accusation or (roll) again? WARNING: Making a final accustion will end the game")
+                    print("This is your hand ", str(self.logic.player_hand))
+                    print(roll_or_warning)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
-                    print(self.logic.current_room)
-                    print("Would you like to make a (final) accusation or (roll) again? WARNING: Making a final accustion will end the game")
+                    print("You're currently in ", str(self.logic.current_room))
+                    print(roll_or_warning)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 else:
@@ -453,7 +492,7 @@ class Prompt:
         def person_input(user_input):
             #Check if input is outside of people choices
             if user_input == 'g':
-                print("Please choose from available suspects:")
+                print("Please choose from available suspects.")
                 print("Type:")
                 self.sus_helper()
                 user_next_option = self.logic.normalize(input("> "))
@@ -465,24 +504,32 @@ class Prompt:
             elif self.menu.menu_validation(user_input) == True:
                 if user_input == "roll":
                     print("Cannot re-roll mid turn.")
+                    print("  ")
+                    print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     person_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
+                    print("  ")
+                    print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     person_input(user_next_option) 
                 elif user_input == "hand":
-                    print(self.logic.player_hand)
+                    print("This is your hand ", str(self.logic.player_hand))
+                    print("  ")
+                    print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     person_input(user_next_option) 
                 elif user_input == "room":
-                    print(self.logic.current_room)
+                    print("You're currently in ", str(self.logic.current_room))
+                    print("  ")
+                    print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
                     user_next_option = self.logic.normalize(input("> "))
@@ -520,24 +567,32 @@ class Prompt:
             elif self.menu.menu_validation(user_input) == True:
                 if user_input == "roll":
                     print("Cannot re-roll mid turn.")
+                    print("  ")
+                    print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
+                    print("  ")
+                    print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "hand":
-                    print(self.logic.player_hand)
+                    print("This is your hand ", str(self.logic.player_hand))
+                    print("  ")
+                    print("Please choose from available rooms.")
                     print("Type:")
                     self.gadget_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "room":
-                    print(self.logic.current_room)
+                    print("You're currently in ", str(self.logic.current_room))
+                    print("  ")
+                    print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
                     user_next_option = self.logic.normalize(input("> "))
@@ -566,24 +621,32 @@ class Prompt:
             elif self.menu.menu_validation(user_input) == True:
                 if user_input == "roll":
                     print("Cannot re-roll mid turn.")
+                    print("  ")
+                    print("Please choose from available rooms.")
                     print("Type:")
                     self.room_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
+                    print("  ")
+                    print("Please choose from available rooms.")
                     print("Type:")
                     self.room_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "hand":
-                    print(self.logic.player_hand)
+                    print("This is your hand ", str(self.logic.player_hand))
+                    print("  ")
+                    print("Please choose from available rooms.")
                     print("Type:")
                     self.room_helper()
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "room":
-                    print(self.logic.current_room)
+                    print("You're currently in ", str(self.logic.current_room))
+                    print("  ")
+                    print("Please choose from available rooms.")
                     print("Type:")
                     self.room_helper()
                     user_next_option = self.logic.normalize(input("> "))
@@ -610,14 +673,15 @@ class Prompt:
             #TODO: BRING ON THE ASCII
 
         else:   
-            print(f"What did you learn about learning, because you didn't solve this crime! It was {final_accusation[0]} with the {final_accusation[1]} in the {final_accusation[2]}")
+            print(f"What did you learn about learning, because you didn't solve this crime! It was {self.logic.solution_list[0]} with the {self.logic.solution_list[1]} in the {self.logic.solution_list[2]}")
             #TODO: BRING ON THE ASCII
 
         print("What would you like to do next? Type (restart) to kill some more time, (rules) to view the brief, or (quit).")
         response = self.logic.normalize(input("> "))     
         def check_input(user_input):
             #Check if input is outside of people choices
-            if response == "restart":
+            kill_some_time = "Type (restart) to kill some more time, (rules) to view the brief, or (quit)."
+            if user_input == "restart":
                 self.logic.reset_tables()
                 self.accused_person = []
                 self.gadget_accusation = []
@@ -630,24 +694,31 @@ class Prompt:
                     self.logic.reset_tables()
                     self.accused_person = []
                     self.gadget_accusation = []
+                    time.sleep(2)
+                    os.system('cls' if os.name == 'nt' else 'clear')
                     self.start_game()
-                elif response == "rules":
+                elif user_input == "rules":
                     self.menu.rules()
-                    print("Type (restart) to kill some more time, (rules) to view the brief, or (quit).")
+                    print(kill_some_time)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
                     print("Cannot access hand after final accusation")
-                    print("Type (restart) to kill some more time, (rules) to view the brief, or (quit)..")
+                    print(kill_some_time)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
                     print("Reset to the Front Desk, ready to play.")
-                    print("Type (restart) to kill some more time, (rules) to view the brief, or (quit)..")
+                    print(kill_some_time)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 else:
                     self.leave_boddy_on_read()
+            else:
+                #Should we make this line red??
+                print(kill_some_time)
+                user_next_option = self.logic.normalize(input("> "))
+                check_input(user_next_option)
 
         check_input(response)
 
@@ -682,35 +753,35 @@ class Prompt:
 
     def sus_helper(self):
         print(f""" 
-        a for {self.logic.perma_suspects[0]} 
-        b for {self.logic.perma_suspects[1]}
-        c for {self.logic.perma_suspects[2]}
-        d for {self.logic.perma_suspects[3]}
-        e for {self.logic.perma_suspects[4]}
-        f for {self.logic.perma_suspects[5]}""")
+        (a) for {self.logic.perma_suspects[0]} 
+        (b) for {self.logic.perma_suspects[1]}
+        (c) for {self.logic.perma_suspects[2]}
+        (d) for {self.logic.perma_suspects[3]}
+        (e) for {self.logic.perma_suspects[4]}
+        (f) for {self.logic.perma_suspects[5]}""")
         
         
 
     def gadget_helper(self):
         print(f"""
-        a for {self.logic.perma_gadgets[0]} 
-        b for {self.logic.perma_gadgets[1]}
-        c for {self.logic.perma_gadgets[2]}
-        d for {self.logic.perma_gadgets[3]}
-        e for {self.logic.perma_gadgets[4]}
-        f for {self.logic.perma_gadgets[5]}
+        (a) for {self.logic.perma_gadgets[0]} 
+        (b) for {self.logic.perma_gadgets[1]}
+        (c) for {self.logic.perma_gadgets[2]}
+        (d) for {self.logic.perma_gadgets[3]}
+        (e) for {self.logic.perma_gadgets[4]}
+        (f) for {self.logic.perma_gadgets[5]}
 
         """)
 
     def room_helper(self):
         print(f"""
-        a for {self.logic.move_rooms[0]} 
-        b for {self.logic.move_rooms[1]}
-        c for {self.logic.move_rooms[2]}
-        d for {self.logic.move_rooms[3]}
-        e for {self.logic.move_rooms[4]}
-        f for {self.logic.move_rooms[5]}
-        g for {self.logic.move_rooms[6]}""")
+        (a) for {self.logic.move_rooms[0]} 
+        (b) for {self.logic.move_rooms[1]}
+        (c) for {self.logic.move_rooms[2]}
+        (d) for {self.logic.move_rooms[3]}
+        (e) for {self.logic.move_rooms[4]}
+        (f) for {self.logic.move_rooms[5]}
+        (g) for {self.logic.move_rooms[6]}""")
 
 
 if __name__ == "__main__":
