@@ -8,6 +8,7 @@ authors = ["KIMBERLY DAMALAS <kimatcamp@yahoo.com>"]
 python = "^3.9"
 pytest = "^6.0"
 playsound = "^1.2.2"
+pyobjc = "^7.1"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^20.8b1", allow-prereleases = true}

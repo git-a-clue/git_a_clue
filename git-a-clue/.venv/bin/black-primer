@@ -1,4 +1,4 @@
-#!/Users/amberfalbo/codefellows/401_python/git-a-clue/git-a-clue/.venv/bin/python
+#!/Users/kim/codefellows/401/git_a_clue/git-a-clue/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
