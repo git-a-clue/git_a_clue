@@ -40,9 +40,8 @@ class Menu_Logic:
             pass
         else:
             print ("Please try again")
-            menu()
+            self.menu()
             
-        # return response
     
     
         
@@ -71,8 +70,7 @@ class Menu_Logic:
                 - The instructor will give you feedback and a passing or failing grade
                 - The game ends once you receive your grade
                 - 
-            5. You've only got one chance at your final whiteboard, so study hard
-        """
+            5. You've only got one chance at your final whiteboard, so study hard"""
         # clear screen and re-display menu
         print(rules)
         time.sleep(5)
@@ -80,7 +78,5 @@ class Menu_Logic:
 
 
 
-# testing function calls 
 
 
-# rules()
