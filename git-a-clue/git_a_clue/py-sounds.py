@@ -1,6 +1,6 @@
 from playsound import playsound
 
-playsound('creeky_door.mp3')
+playsound('./assets/sounds/creeky_door.mp3')
 
 # For pycairo fix:
 # From root directory: kim/codefellows--First I installed homebrew, 

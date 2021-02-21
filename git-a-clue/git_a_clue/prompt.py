@@ -165,7 +165,13 @@ class Prompt:
         What would you like to do next?
         """)
         self.menu.menu()
-        response = self.logic.normalize(input("> "))
+        # inserted to make testing not hang on input
+        try:
+            response = self.logic.normalize(input("> "))
+            return response
+        except:
+            response = 'None'
+            return response
         
         #VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION
         def check_input(user_input):
