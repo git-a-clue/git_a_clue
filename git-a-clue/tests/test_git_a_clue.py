@@ -56,15 +56,53 @@ def test_check_guess1(capsys):
 def test_check_guess2(capsys):
     clue = Clue_Logic()
     clue.suspects = ['s1']
-    clue.check_guess('s1', 's1', 's1')
+    clue.check_guess('s1', 'g9', 'r9')
     captured = capsys.readouterr()
     assert captured.out == "Not this time we have s1\n"
+
+# @pytest.mark.skip("pending")
+def test_check_guess2_1(capsys):
+    clue = Clue_Logic()
+    clue.gadgets = ['g1']
+    clue.check_guess('s9', 'g1', 'r9')
+    captured = capsys.readouterr()
+    assert captured.out == "Not this time we have g1\n"
+
+# @pytest.mark.skip("pending")
+def test_check_guess2_2(capsys):
+    clue = Clue_Logic()
+    clue.rooms = ['r1']
+    clue.check_guess('s9', 'g9', 'r1')
+    captured = capsys.readouterr()
+    assert captured.out == "Not this time we have r1\n"
+
+# @pytest.mark.skip("pending")
+def test_check_guess2_3(capsys):
+    clue = Clue_Logic()
+    clue.rooms = ['r1']
+    clue.gadgets = ['g1']
+    clue.suspects = ['s1']
+    clue.check_guess('s2', 'g2', 'r1')
+    captured = capsys.readouterr()
+    assert captured.out == "Not this time we have r1\n"
+
 
 # @pytest.mark.skip("pending")
 def test_check_guess3(capsys):
     actual = Clue_Logic().check_guess('h9', 'j9', 'k9')
     captured = capsys.readouterr()
     assert captured.out == "Sorry no help here!\n"
+    
+# @pytest.mark.skip("pending")
+def test_check_guess_have_solution(capsys):
+    clue = Clue_Logic()
+    sol_return = clue.solution_deal()
+    truth = clue.solution_list
+    
+    actual = clue.check_guess(truth[0], truth[1], truth[2])
+    captured = capsys.readouterr()
+    assert captured.out == f"CHEAT {truth}\nSorry no help here!\n"
+
 
 # If we need better test coverage we can add tests for the rest of the cases.
 
@@ -175,12 +213,6 @@ def test_menu_rules():
 def test_prompt_logic():
     assert Prompt()
     
-@pytest.mark.skip("pending")
-def test_prompt_logic2():
-    new_prompt = Prompt() 
-    actual = new_prompt.e
-    expected = 4
-    assert actual == expected 
     
 # @pytest.mark.skip("pending")
 def test_prompt_logic3():
