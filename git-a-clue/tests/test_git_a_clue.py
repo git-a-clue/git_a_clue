@@ -5,7 +5,6 @@ from git_a_clue.main_logic import Clue_Logic
 from git_a_clue.menu_logic import Menu_Logic
 from git_a_clue.prompt import Prompt
 
-# Main_Logic Tests -- 15 passing; 80% on report
 # @pytest.mark.skip("pending")
 def test_logic():
     actual = Clue_Logic.suspects[0]
@@ -99,10 +98,29 @@ def test_check_guess_have_solution(capsys):
     sol_return = clue.solution_deal()
     truth = clue.solution_list
     
-    actual = clue.check_guess(truth[0], truth[1], truth[2])
+    actual = clue.check_guess(truth[0], truth[1], truth[2],1)
     captured = capsys.readouterr()
     assert captured.out == f"CHEAT {truth}\nSorry no help here!\n"
 
+# @pytest.mark.skip("pending")
+def test_check_guess_have_solution2(capsys):
+    clue = Clue_Logic()
+    sol_return = clue.solution_deal()
+    truth = clue.solution_list
+    
+    actual = clue.check_guess(truth[0], truth[1], truth[2],2)
+    captured = capsys.readouterr()
+    assert captured.out == f"CHEAT {truth}\nSorry no help here!\n"
+
+# @pytest.mark.skip("pending")
+def test_check_guess_have_solution3(capsys):
+    clue = Clue_Logic()
+    sol_return = clue.solution_deal()
+    truth = clue.solution_list
+    
+    actual = clue.check_guess(truth[0], truth[1], truth[2],3)
+    captured = capsys.readouterr()
+    assert captured.out == f"CHEAT {truth}\nSorry no help here!\n"
 
 # If we need better test coverage we can add tests for the rest of the cases.
 
