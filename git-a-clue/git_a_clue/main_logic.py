@@ -73,7 +73,7 @@ class Clue_Logic:
                     self.start_game_deal_cards(self.rooms, self.player_hand)
     
 
-    def check_guess(self, L1, L2, L3):
+    def check_guess(self, L1, L2, L3, check = 0):
         """ randomize order of comparing lists; remember to pass in (suspect, gadget, room) """
         check = self.random_helper(1,3)
         
