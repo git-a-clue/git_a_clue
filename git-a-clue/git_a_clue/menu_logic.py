@@ -21,29 +21,7 @@ class Menu_Logic:
         if user_choice in available_choices:
             return True
         else: 
-            return False
-
-    #ENTER IN NEXT FUNC TO CONTINUE AFTER MENU CHOICE??
-    def menu_helper(self, user_choice, next_function=None): 
-        if user_choice == ("roll"):
-
-            self.roll_and_rooms()
-            # roll_dice()
-            # what to do if they look at rules in flow and not before a roll??
-        elif user_choice == ("rules"):
-            self.rules()
-        elif user_choice == ("hand"):
-            print(self.player_hand)
-        elif user_choice == ("quit"):
-            self.leave_john_on_read()
-        elif user_choice == ("room"):
-            print(self.current_room)
-            pass
-        else:
-            print ("Please try again")
-            self.menu()
-            
-    
+            return False    
     
         
         
@@ -70,7 +48,7 @@ class Menu_Logic:
                 - Schedule some time with an instructor and present your final solution 
                 - The instructor will give you feedback and a passing or failing grade
                 - The game ends once you receive your grade
-                - 
+                
             5. You've only got one chance at your final whiteboard, so study hard"""
         # clear screen and re-display menu
         print(rules)

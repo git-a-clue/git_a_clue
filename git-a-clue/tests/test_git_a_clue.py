@@ -132,6 +132,7 @@ def test_roll_dice():
 # @pytest.mark.skip("pending")
 def test_eligible_rooms():
     clue = Clue_Logic()
+    # clue.current_room = 'r4'
     li = clue.eligible_rooms()
     if li[1] == 6:
         assert len(li[0]) == li[1]+1
@@ -191,33 +192,6 @@ def test_menu_validation2():
     
 
 # @pytest.mark.skip("pending")
-def test_menu_helper(capsys):
-    actual = Menu_Logic().menu_helper("gimme_a_schnack")
-    captured = capsys.readouterr()
-    assert captured.out == "Please try again\nType (roll) to continue play\nType (rules) to view the brief\nType (hand) to view your leads\nType (room) to be reminded of where you are\nType (quit) to leave John's death a mystery\n"
-
-# @pytest.mark.skip("pending")
-def test_menu_helper2(capsys):
-    new_player = Clue_Logic()
-    new_player.player_hand.append('s1')
-    actual = Menu_Logic.menu_helper(new_player,"hand")
-    captured = capsys.readouterr()
-    expected = "['s1']\n"
-    
-    assert captured.out == expected
-
-# @pytest.mark.skip("pending")
-def test_menu_helper3(capsys):
-    new_player = Clue_Logic()
-    new_player.current_room = ('r7')
-    actual = Menu_Logic.menu_helper(new_player,"room")
-    captured = capsys.readouterr()
-    expected = "r7\n"
-    
-    assert captured.out == expected
-
-
-# @pytest.mark.skip("pending")
 def test_menu_rules():
     
     Menu_Logic().rules()
@@ -239,25 +213,14 @@ def test_prompt_logic3():
     expected = []
     assert actual == expected
     
-@pytest.mark.skip("pending")
-def test_start_game(monkeypatch):
-
-    # monkeypatch the "input" function, so that it returns "Mark".
-    # This simulates the user entering "Mark" in the terminal:
-    monkeypatch.setattr('builtins.input', lambda _: "a")
-
-    # go about using input() like you normally would:
-    Prompt().start_game()
-    
-    assert user_input == "play"    
     
 
-@pytest.mark.skip("pending")
-def test_start_game2(capsys):
-    actual = Prompt().start_game()
-    err = capsys.readouterr()
+# @pytest.mark.skip("pending")
+def test_start_game_bad_input(capsys):
+    actual = Prompt().start_game("crappy_value")
+    captured = capsys.readouterr()
     
-    assert capsys.err == ''
+    assert captured.out == "Please enter a valid option.\nType (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery."
     
 @pytest.mark.skip("pending")
 def test_start_game3(capsys):

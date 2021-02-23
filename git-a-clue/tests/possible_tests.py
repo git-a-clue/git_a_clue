@@ -65,3 +65,41 @@ def test_prompt_logic2():
     actual = new_prompt.e
     expected = 4
     assert actual == expected 
+
+@pytest.mark.skip("pending")
+def test_start_game(monkeypatch):
+
+    # monkeypatch the "input" function, so that it returns "Mark".
+    # This simulates the user entering "Mark" in the terminal:
+    monkeypatch.setattr('builtins.input', lambda _: "play")
+
+    # go about using input() like you normally would:
+    Prompt().start_game()
+    
+    assert user_input == "play"    
+
+# @pytest.mark.skip("pending")
+def test_menu_helper(capsys):
+    actual = Menu_Logic().menu_helper("gimme_a_schnack")
+    captured = capsys.readouterr()
+    assert captured.out == "Please try again\nType (roll) to continue play\nType (rules) to view the brief\nType (hand) to view your leads\nType (room) to be reminded of where you are\nType (quit) to leave John's death a mystery\n"
+
+# @pytest.mark.skip("pending")
+def test_menu_helper2(capsys):
+    new_player = Clue_Logic()
+    new_player.player_hand.append('s1')
+    actual = Menu_Logic.menu_helper(new_player,"hand")
+    captured = capsys.readouterr()
+    expected = "['s1']\n"
+    
+    assert captured.out == expected
+
+# @pytest.mark.skip("pending")
+def test_menu_helper3(capsys):
+    new_player = Clue_Logic()
+    new_player.current_room = ('r7')
+    actual = Menu_Logic.menu_helper(new_player,"room")
+    captured = capsys.readouterr()
+    expected = "r7\n"
+    
+    assert captured.out == expected
