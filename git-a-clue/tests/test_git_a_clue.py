@@ -221,3 +221,87 @@ def test_prompt_logic3():
     expected = []
     assert actual == expected
     
+@pytest.mark.skip("pending")
+def test_start_game(monkeypatch):
+
+    # monkeypatch the "input" function, so that it returns "Mark".
+    # This simulates the user entering "Mark" in the terminal:
+    monkeypatch.setattr('builtins.input', lambda _: "a")
+
+    # go about using input() like you normally would:
+    Prompt().start_game()
+    
+    assert user_input == "play"    
+    
+
+@pytest.mark.skip("pending")
+def test_start_game2(capsys):
+    actual = Prompt().start_game()
+    err = capsys.readouterr()
+    
+    assert capsys.err == ''
+    
+@pytest.mark.skip("pending")
+def test_start_game3(capsys):
+    pass
+    
+@pytest.mark.skip("pending")
+def test_pick_a_player(capsys):
+    pass
+
+@pytest.mark.skip("pending")
+def test_time_to_deal_and_pick(capsys):
+    pass    
+
+@pytest.mark.skip("pending")
+def test_roll_and_rooms(capsys):
+    pass
+
+@pytest.mark.skip("pending")
+def test_sus_accusation():
+    pass
+
+@pytest.mark.skip("pending")
+def test_gad_accusation():
+    pass
+
+@pytest.mark.skip("pending")
+def test_type_of_guess():
+    actual = Prompt().type_of_guess()
+    captured = capsys.readouterr()
+    assert captured.out == 'W'
+
+
+# @pytest.mark.skip("pending")
+def test_final_guess():
+    pass
+
+
+# @pytest.mark.skip("pending")
+def test_leave_boddy_on_read(capsys):
+    actual = Prompt().leave_boddy_on_read()
+    captured = capsys.readouterr()
+    assert captured.out == "boddy hates a quitter - now his ghost will forever haunt your CSS.\n"
+
+# @pytest.mark.skip("pending")
+def test_sus_helper(capsys):
+    actual = Prompt().sus_helper()
+    captured = capsys.readouterr()
+    assert captured.out[1] == '\n'
+
+# @pytest.mark.skip("pending")
+def test_gadget_helper(capsys):
+    actual = Prompt().gadget_helper()
+    captured = capsys.readouterr()
+    assert captured.out[1] == ' '
+
+# @pytest.mark.skip("pending")
+def test_room_helper(capsys):
+    actual = Prompt().room_helper()
+    captured = capsys.readouterr()
+    assert captured.out[1] == ' '
+
+
+# https://code-maven.com/mocking-input-and-output-for-python-testing
+
+# Monkeypatch -- https://stackoverflow.com/questions/35851323/how-to-test-a-function-with-input-call
