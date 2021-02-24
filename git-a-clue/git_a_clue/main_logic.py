@@ -145,6 +145,10 @@ class Clue_Logic:
     def roll_dice(self):
         roll = self.random_helper(1,6)
         animate_ascii(dice_animation, 6, 3)
+        for k in range(9):
+            print("\033[A\033[A")
+        path = f"git_a_clue/assets_animation/animation_{roll - 1}.txt"
+        print(print_ascii(path))
         return roll
 
     def eligible_rooms(self):
