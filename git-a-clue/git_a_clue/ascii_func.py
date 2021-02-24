@@ -23,7 +23,6 @@ def colorize_text(text):
     text = re.sub("{end?}","\\033[0m", text)
     return text
 
-
 def animate_ascii(path, frames, loops=1, delay=0.2):
     for i in range(9):
         print(" ")
@@ -37,5 +36,6 @@ def animate_ascii(path, frames, loops=1, delay=0.2):
                 text = colorize_text(text)
                 print(text)
                 time.sleep(delay)
+
 
 

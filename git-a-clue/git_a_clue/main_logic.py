@@ -144,7 +144,7 @@ class Clue_Logic:
 
     def roll_dice(self):
         roll = self.random_helper(1,6)
-        # animate_ascii(dice_animation, 6, 3)
+        animate_ascii(dice_animation, 6, 3)
         return roll
 
     def eligible_rooms(self):
