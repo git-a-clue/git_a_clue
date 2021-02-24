@@ -8,28 +8,37 @@ from git_a_clue.main_logic import Clue_Logic
 from git_a_clue.menu_logic import Menu_Logic
 from git_a_clue.prompt import Prompt
 
+# @pytest.fixture
+# def fake_capsys(capsys):
+#     return capsys
 
     
-@pytest.fixture    
-def start_game_with_input(capsys):
-    Prompt().start_game(input)
-    captured = capsys.readouterr
+def test_capture_output(capsys):
+    Prompt().start_game('green')
+    out,err = capsys.readouterr()
     
-    with open('./start_game_test.txt','a') as sg:
-        sg.write(f'Input given: {input}\n')
-        sg.writelines(captured.out)
+    # print(f'captured text: {captured.out}')
+    assert 'Please enter a valid option' in out 
     
-def test_start_game_with_input(start_game_with_input):
-    start_game_with_input('play')
-    start_game_with_input('p')
-    start_game_with_input('roll')
-    start_game_with_input('rules')
-    start_game_with_input('hand')
-    start_game_with_input('room')
-    start_game_with_input('quit')
-    start_game_with_input('yellow')
+# def write_output(mock_input):
+#     with open('./start_game_test.txt','a') as sg:
+#         sg.write(f'Input given: {mock_input}\n')
+#         sg.writelines(captured.out)
     
-    assert os.path.exists('./start_game_test.txt')
+# def test_start_game_with_input(capsys):
+#     capture_output()
+#     write_output('play')
+    
+#     assert os.path.exists('./start_game_test.txt')
+    
+    # start_game_with_input('p')
+    # start_game_with_input('roll')
+    # start_game_with_input('rules')
+    # start_game_with_input('hand')
+    # start_game_with_input('room')
+    # start_game_with_input('quit')
+    # start_game_with_input('yellow')
+    
         
         
 # https://dbader.org/blog/python-check-if-file-exists

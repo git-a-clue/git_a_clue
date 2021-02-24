@@ -85,6 +85,10 @@ class Prompt:
         time.sleep(2)
         
         print(greeting)
+        user_input = mock_input or input("> ")
+        
+        response = self.logic.normalize(input("> "))   
+            
         print(white_and_red_background + greeting_pt2 + color_end)
         print("  ")
         user_input = mock_input or input("> ")
@@ -123,6 +127,11 @@ class Prompt:
                     self.leave_boddy_on_read()
             else:
                 print("Please enter a valid option.")
+
+                print("Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery.")
+                    
+            
+                user_next_option = self.logic.normalize(input("> "))
                 print("  ")
                 print(white_and_red_background + greeting_pt2 + color_end)
                 user_next_option = self.logic.normalize(input("> "))
