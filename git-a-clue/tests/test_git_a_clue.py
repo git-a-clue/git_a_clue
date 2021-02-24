@@ -215,7 +215,7 @@ def test_prompt_logic3():
     
     
 
-# @pytest.mark.skip("pending")
+@pytest.mark.skip("pending")
 def test_start_game_bad_input(capsys):
     actual = Prompt().start_game("crappy_value")
     captured = capsys.readouterr()
@@ -281,8 +281,3 @@ def test_room_helper(capsys):
     actual = Prompt().room_helper()
     captured = capsys.readouterr()
     assert captured.out[1] == ' '
-
-
-# https://code-maven.com/mocking-input-and-output-for-python-testing
-
-# Monkeypatch -- https://stackoverflow.com/questions/35851323/how-to-test-a-function-with-input-call

@@ -103,3 +103,7 @@ def test_menu_helper3(capsys):
     expected = "r7\n"
     
     assert captured.out == expected
+
+# https://code-maven.com/mocking-input-and-output-for-python-testing
+
+# Monkeypatch -- https://stackoverflow.com/questions/35851323/how-to-test-a-function-with-input-call
