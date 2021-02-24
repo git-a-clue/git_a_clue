@@ -1,6 +1,24 @@
+from ascii_func import print_ascii
+from ascii_func import animate_ascii
+from termcolor import colored
 import time
 # from playsound import playsound
 import random
+
+# *********** ASCII Variables ************
+dice_animation = "git_a_clue/assets_animation/animation"
+
+#***********color/color-combos***********
+white_and_red_background = "\033[4;37;41m"
+blue = "\033[1;34m"
+red = "\033[0;31m"
+color_end = "\033[0m"
+green = "\033[1;32m"
+aqua = "\033[1;36m"
+#******************************
+
+
+
 
 
 # time adds suspense...
@@ -126,6 +144,7 @@ class Clue_Logic:
 
     def roll_dice(self):
         roll = self.random_helper(1,6)
+        animate_ascii(dice_animation, 6, 3)
         return roll
 
     def eligible_rooms(self):
