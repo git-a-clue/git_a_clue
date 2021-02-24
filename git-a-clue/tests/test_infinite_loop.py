@@ -21,13 +21,13 @@ def start_game_with_input(capsys):
     
 def test_start_game_with_input(start_game_with_input):
     start_game_with_input('play')
-    # start_game_with_input('p')
-    # start_game_with_input('roll')
-    # start_game_with_input('rules')
-    # start_game_with_input('hand')
-    # start_game_with_input('room')
-    # start_game_with_input('quit')
-    # start_game_with_input('yellow')
+    start_game_with_input('p')
+    start_game_with_input('roll')
+    start_game_with_input('rules')
+    start_game_with_input('hand')
+    start_game_with_input('room')
+    start_game_with_input('quit')
+    start_game_with_input('yellow')
     
     assert os.path.exists('./start_game_test.txt')
         
