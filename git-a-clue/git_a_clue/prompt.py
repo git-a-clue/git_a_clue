@@ -39,8 +39,12 @@ class Prompt:
         Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery."
         """
         print(greeting)
-        user_input = mock_input or input("> ")
-        response = self.logic.normalize(user_input)          
+        # user_input = mock_input or input("> ")
+        if mock_input != None:
+            response =  mock_input
+        else:
+            response = self.logic.normalize(input("> "))   
+            
         def check_input(user_input):
             #Check if input is outside of people choices
             if user_input == "play" or user_input == "p":
@@ -73,7 +77,13 @@ class Prompt:
             else:
                 print("Please enter a valid option.")
                 print("Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery.")
-                user_next_option = self.logic.normalize(input("> "))
+                    
+            if mock_input != None:
+                user_next_option =  mock_input
+            else:
+                user_next_option = self.logic.normalize(input("> "))   
+
+                # user_next_option = self.logic.normalize(input("> "))
                 check_input(user_next_option)
         check_input(response)
 
