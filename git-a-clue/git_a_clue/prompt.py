@@ -1,9 +1,11 @@
 from main_logic import Clue_Logic
 from menu_logic import Menu_Logic
-from ascii_func import print_ascii
-from ascii_func import animate_ascii
+# from ascii_func import print_ascii
+# from ascii_func import animate_ascii
 from termcolor import colored
-# from playsound import playsound
+
+
+from playsound import playsound
 import time
 import os
 # display welcome laptop
@@ -85,9 +87,12 @@ class Prompt:
         time.sleep(2)
         
         print(greeting)
-        user_input = mock_input or input("> ")
+        # user_input = mock_input or input("> ")
         
-        response = self.logic.normalize(input("> "))   
+        if mock_input != None:
+            response = mock_input
+        else: 
+            response = self.logic.normalize(input("> "))   
             
         print(white_and_red_background + greeting_pt2 + color_end)
         print("  ")
