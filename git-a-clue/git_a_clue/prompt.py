@@ -36,6 +36,7 @@ ethernet = "git_a_clue/assets_ascii/ethernet_cord.txt"
 
 #***********color/color-combos***********
 white_and_red_background = "\033[4;37;41m"
+white_and_green_bkgrnd = "\033[4;30;42m"
 blue = "\033[1;34m"
 red = "\033[0;31m"
 color_end = "\033[0m"
@@ -72,14 +73,20 @@ class Prompt:
     # display chalk outline
         greeting = """
         There's been a murrrrrrder at Code Fellows! 
-        Mr Body needs your help to bring his killer to justice. 
-
-        Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery."
+        Mr Body needs your help to bring his killer to justice.
+        
         """
+        
+        greeting_pt2 = "Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery."
+        #TODOcenter computer a bit more!!
         print(print_ascii(computer_cf))
+        time.sleep(2)
         print(print_ascii(ascii_murder))
-        print(print_ascii(walk_hall))
+        time.sleep(2)
+        
         print(greeting)
+        print(white_and_red_background + greeting_pt2 + color_end)
+        print("  ")
         user_input = mock_input or input("> ")
         response = self.logic.normalize(user_input)          
         def check_input(user_input):
@@ -90,30 +97,34 @@ class Prompt:
             elif self.menu.menu_validation(user_input) == True:
                 if user_input == "roll":
                     print("Before we play, pick an avatar.")
-                    print("Type:")
-                    self.sus_helper()
+                    print("  ")
+                    print(white_and_red_background + greeting_pt2 + color_end)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
-                    print("Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery.")
+                    print("  ")
+                    print(white_and_red_background + greeting_pt2 + color_end)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
                     print("No hand dealt")
-                    print("Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery.")
+                    print("  ")
+                    print(white_and_red_background + greeting_pt2 + color_end)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
                     print("Currently at the Front Desk, ready to play.")
-                    print("Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery.")
+                    print("  ")
+                    print(white_and_red_background + greeting_pt2 + color_end)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "quit":
                     self.leave_boddy_on_read()
             else:
                 print("Please enter a valid option.")
-                print("Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery.")
+                print("  ")
+                print(white_and_red_background + greeting_pt2 + color_end)
                 user_next_option = self.logic.normalize(input("> "))
                 check_input(user_next_option)
         check_input(response)
@@ -187,28 +198,24 @@ class Prompt:
         self.logic.player_hand_deal()
 
         #PROMPT ACKNOWLEDGING avatar - MOVING TO NEXT OPTION
-        print(f"Alright Detective {player_avatar}. Welcome to Git_A_Clue. Let's go solve a murder!")
-        # TODO  AMBER // POSSIBLE ASCII PLAYER CARD VAGUE
+        print(colored(f"Alright Detective {player_avatar}. Welcome to Git_A_Clue. Let's go solve a murder!", "green"))
+        print(print_ascii(walk_hall))
+        # TODO  AMBER // POSSIBLE ASCII PLAYER CARD/S VAGUE
 
-        print("""
+        print(colored("""
         
         Here are your leads. Use them wisely:
-        """)
-        print(self.logic.player_hand)
+        """, "green"))
+        hand_holder = self.logic.player_hand
+        print(white_and_green_bkgrnd + ', '.join(hand_holder) + color_end)
         time.sleep(2)
 
         print("""
         What would you like to do next?
         """)
         self.menu.menu()
-        # inserted to make testing not hang on input
-        try:
-            response = self.logic.normalize(input("> "))
-            return response
-        except:
-            response = 'None'
-            return response
-        
+        response = self.logic.normalize(input("> "))
+
         #VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION
         def check_input(user_input):
             #check input against menu prompts
@@ -223,7 +230,8 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
-                    print(self.logic.player_hand)
+                    print(white_and_green_bkgrnd + ', '.join(hand_holder) + color_end)
+                    print("  ")
                     print("Please choose from menu:")
                     self.menu.menu()
                     user_next_option = self.logic.normalize(input("> "))
@@ -313,8 +321,8 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
-                    print("This is your hand ", str(self.logic.player_hand).strip('['']'))
-                    print("   ")
+                    print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
+                    print("  ")
                     print("Please choose from available rooms:")
                     print("Type:")
                     print(murder_rooms)
@@ -333,7 +341,7 @@ class Prompt:
 
             #If all else fails, re-print rooms & call the function recursively
             else:
-                #Should we make this line red??
+                #TODOShould we make this line red??
                 print("Please choose from available rooms:")  
                 print("Type:")      
                 print(rooms)
@@ -384,7 +392,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
-                    print("This is your hand ", str(self.logic.player_hand).strip('[]'))
+                    print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print("Please choose from available suspects.")
                     print("Type:")
@@ -453,7 +461,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
-                    print("This is your hand ", str(self.logic.player_hand))
+                    print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print("Please choose from available gadgets.")
                     print("Type:")
@@ -472,7 +480,7 @@ class Prompt:
                     self.leave_boddy_on_read()
             #If all else fails, re-print rooms & call the function recursively
             else:
-                #Should we make this line red??
+                #TODOShould we make this line red??
                 print("Please choose from available gadgets.")
                 print("Type:")
                 self.gadget_helper()
@@ -506,7 +514,8 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
-                    print("This is your hand ", str(self.logic.player_hand))
+                    print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
+                    print("  ")
                     print(roll_or_warning)
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
@@ -565,7 +574,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     person_input(user_next_option) 
                 elif user_input == "hand":
-                    print("This is your hand ", str(self.logic.player_hand))
+                    print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print("Please choose from available suspects.")
                     print("Type:")
@@ -628,7 +637,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "hand":
-                    print("This is your hand ", str(self.logic.player_hand))
+                    print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print("Please choose from available rooms.")
                     print("Type:")
@@ -682,7 +691,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "hand":
-                    print("This is your hand ", str(self.logic.player_hand))
+                    print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print("Please choose from available rooms.")
                     print("Type:")
