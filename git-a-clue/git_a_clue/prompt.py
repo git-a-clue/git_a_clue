@@ -1,5 +1,8 @@
-from git_a_clue.main_logic import Clue_Logic
-from git_a_clue.menu_logic import Menu_Logic
+from main_logic import Clue_Logic
+from menu_logic import Menu_Logic
+from ascii_func import print_ascii
+from ascii_func import animate_ascii
+from termcolor import colored
 # from playsound import playsound
 import time
 import os
@@ -7,6 +10,41 @@ import os
 
 # display greeting
 # prompt to hit enter
+
+# *********** ASCII Variables ************
+
+computer_cf = "git_a_clue/assets_ascii/clue_comp.txt"
+floorplan = "git_a_clue/assets_ascii/cf_floorplan.txt"
+dice_animation = "git_a_clue/assets_animation/animation"
+walk_hall = "git_a_clue/assets_ascii/walk_down_hall.txt"
+
+ascii_murder = "git_a_clue/assets_ascii/murder.txt"
+
+john_outline = "git_a_clue/assets_ascii/john_outline.txt"
+
+#*********** you are here.... *******
+
+you_front_desk = "git_a_clue/assets_ascii/you_are_here_frontd.txt"
+
+#*********** GADGETS ***************
+ascii_gadgets = "git_a_clue/assets_ascii/gadgets.txt"
+
+keyboard = "git_a_clue/assets_ascii/keyboard.txt"
+laptop = "git_a_clue/assets_ascii/laptop.txt"
+whiteboard = "git_a_clue/assets_ascii/killer_whiteboard.txt"
+ethernet = "git_a_clue/assets_ascii/ethernet_cord.txt"
+
+#***********color/color-combos***********
+white_and_red_background = "\033[4;37;41m"
+blue = "\033[1;34m"
+red = "\033[0;31m"
+color_end = "\033[0m"
+green = "\033[1;32m"
+aqua = "\033[1;36m"
+#******************************
+
+
+
 
 
 class Prompt:
@@ -38,6 +76,9 @@ class Prompt:
 
         Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery."
         """
+        print(print_ascii(computer_cf))
+        print(print_ascii(ascii_murder))
+        print(print_ascii(walk_hall))
         print(greeting)
         user_input = mock_input or input("> ")
         response = self.logic.normalize(user_input)          
@@ -79,7 +120,7 @@ class Prompt:
 
 
     def pick_a_player(self):
-        choose_avatar = f"""
+        choose_avatar = """
         Please choose you avatar from the following list.
         Type:"""
         print(choose_avatar)
