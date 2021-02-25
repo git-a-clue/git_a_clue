@@ -27,7 +27,7 @@
      |                @            / Babbage  /   @                                 
      |                  @         /          /      @                      
      |                @            @        /         @                           
-     @             @                 @     / Lovelace   @                       
+     @             @                 @     / {purple}Lovelace {end}  @                       
      @           @                     @  /          /    @              
       @                                   @         /       @                  
         @                                    @     /          @                  

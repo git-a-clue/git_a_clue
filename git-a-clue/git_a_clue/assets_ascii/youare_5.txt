@@ -17,7 +17,7 @@
      |         / John's /     @                                                
      |        / Study  /        @                                               
      |        @       /           @                                            
-     |          @    /  Hopper  /   @                                               
+     |          @    /  {purple}Hopper{end}  /   @                                               
      |            @ /          /      @                                             
      |      @        @        /         @                                         
      |        @        @     /         /  @                                        

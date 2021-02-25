@@ -40,8 +40,8 @@
                        @                                            |          
                          @                                          |          
                            @                                        |          
-                             @                              Student |                
-                               @                            Kitchen |          
+                             @                             {purple} Student {end}|                
+                               @                           {purple} Kitchen {end}|          
                                   @                                 |          
                                     @                               |          
                                       @       Front         \       |          
