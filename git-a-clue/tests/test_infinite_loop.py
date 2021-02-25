@@ -5,8 +5,8 @@ import os
 import pytest
 
 from git_a_clue.prompt import Prompt
-from git_a_clue.main_logic import Clue_Logic
-from git_a_clue.menu_logic import Menu_Logic
+# from git_a_clue.main_logic import Clue_Logic
+# from git_a_clue.menu_logic import Menu_Logic
 
 # all pass with the addition of mock_input optional arguments
 # and with if/else statements around both expected input areas
@@ -22,17 +22,6 @@ def test_capture_start_bad_input(capsys):
 # @pytest.mark.skip("pending")  
 def test_capture_pick_bad_input(capsys):
     Prompt().pick_a_player('yellow')
-    out,err = capsys.readouterr()
-    
-    assert 'Please choose you avatar' in out 
-
-###################
-#  time_to-deal_and_pick tests
-###################
-
-@pytest.mark.skip("pending")    
-def test_capture_deal_bad_input(capsys):
-    Prompt().time_to_deal_and_pick('Kim','yellow')
     out,err = capsys.readouterr()
     
     assert 'Please choose you avatar' in out 

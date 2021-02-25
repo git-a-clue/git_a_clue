@@ -1,19 +1,23 @@
 import os
 import re
-from main_logic import *
-from prompt import *
+# from git_a_clue.main_logic import *
+# from prompt import *
 import time
+
+red = "\033[0;31m"
+white_and_red_background = "\033[4;37;41m"
 
 class Menu_Logic: 
     def __init__(self):
         pass
 
     def menu(self):
-        print("Type (roll) to continue play")
-        print("Type (rules) to view the brief")
-        print("Type (hand) to view your leads")
-        print("Type (room) to be reminded of where you are")
-        print("Type (quit) to leave John's death a mystery")
+        print("Type " + white_and_red_background + " roll  " + color_end + " to continue play")
+        print("Type " + white_and_red_background + " rules " + color_end + " to view the brief")
+        print("Type " + white_and_red_background + " hand  " + color_end + " to view your leads")
+        print("Type " + white_and_red_background + " room  " + color_end + " to be reminded of where you are")
+        print("Type " + white_and_red_background + " quit  " + color_end + " to leave John's death a mystery")
+        print("  ")
         # response = normalize(input("> "))
     
     def menu_validation(self, user_choice):

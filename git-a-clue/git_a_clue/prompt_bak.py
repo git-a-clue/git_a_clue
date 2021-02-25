@@ -1,8 +1,8 @@
-from main_logic import Clue_Logic
-from menu_logic import Menu_Logic
-from ascii_func import print_ascii
-from ascii_func import animate_ascii
-from termcolor import colored
+from .main_logic import Clue_Logic
+from .menu_logic import Menu_Logic
+from .ascii_func import print_ascii
+from .ascii_func import animate_ascii
+# from termcolor import colored
 # from playsound import playsound
 import time
 import os
@@ -73,7 +73,7 @@ class Prompt:
     # display chalk outline
         greeting = """
         There's been a murrrrrrder at Code Fellows! 
-        Mr Body needs your help to bring his killer to justice.
+        John Cokos needs your help to bring his killer to justice.
         
         """
         

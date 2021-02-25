@@ -2,15 +2,20 @@ import sys
 import pytest
 import re
 
+# from git_a_clue.ascii_func import print_ascii
+# from git_a_clue.ascii_func import animate_ascii
+
+
 from git_a_clue.main_logic import Clue_Logic
 from git_a_clue.menu_logic import Menu_Logic
 from git_a_clue.prompt import Prompt
 
 
+
 # @pytest.mark.skip("pending")
 def test_logic():
     actual = Clue_Logic.suspects[0]
-    expected = 's1'
+    expected = 'Roger Huba'
     assert actual == expected
 
 # @pytest.mark.skip("pending")
@@ -226,22 +231,22 @@ def test_final_guess():
 def test_leave_boddy_on_read(capsys):
     actual = Prompt().leave_boddy_on_read()
     captured = capsys.readouterr()
-    assert captured.out == "boddy hates a quitter - now his ghost will forever haunt your CSS.\n"
+    assert captured.out == "John hates a quitter - now his ghost will forever haunt your CSS.\n"
 
 # @pytest.mark.skip("pending")
 def test_sus_helper(capsys):
     actual = Prompt().sus_helper()
     captured = capsys.readouterr()
-    assert captured.out[1] == '\n'
+    assert 'Heather' in captured.out
 
 # @pytest.mark.skip("pending")
 def test_gadget_helper(capsys):
     actual = Prompt().gadget_helper()
     captured = capsys.readouterr()
-    assert captured.out[1] == ' '
+    assert 'Donuts' in captured.out
 
 # @pytest.mark.skip("pending")
 def test_room_helper(capsys):
     actual = Prompt().room_helper()
     captured = capsys.readouterr()
-    assert captured.out[1] == ' '
+    assert 'Lovelace' in captured.out

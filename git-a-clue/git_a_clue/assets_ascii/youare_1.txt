@@ -33,9 +33,9 @@
         @                                    @     /          @                  
           @                                    @  /             @             
             @          Co-working                @                @             
-              @           Hall                       Katherine G.   @           
-                @                                      Johnson      |          
-                  @                                    Ballroom     |          
+              @           Hall                      {purple} Katherine G. {end}  @           
+                @                                     {purple} Johnson   {end}   |          
+                  @                                  {purple}  Ballroom {end}    |          
                     @                                               |          
                        @                                            |          
                          @                                          |          
