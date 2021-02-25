@@ -319,7 +319,6 @@ class Prompt:
                 print(print_ascii(map))
                 break
             counter += 1    
-        # time.sleep(1)
 
     def cheat_helper(self):
         if self.logic.solution_list == []:
@@ -333,7 +332,6 @@ class Prompt:
         alpha = [white_and_red_background + ' A ' + color_end, white_and_red_background + ' B ' + color_end, white_and_red_background + ' C ' + color_end, white_and_red_background + ' D ' + color_end, white_and_red_background + ' E ' + color_end, white_and_red_background + ' F ' + color_end, white_and_red_background + ' G ' + color_end]
         print("  ")
         print(colored("Rolling...", "green"))
-        # time.sleep(1)
         rooms, roll = self.logic.eligible_rooms()
         print(green + f"You've rolled a {roll}" + color_end)
         playsound("assets/sounds/dice-roll.wav")
@@ -536,7 +534,7 @@ class Prompt:
                 self.gadget_accusation.append(self.logic.perma_gadgets[self.lib[user_input]])
                 #CALL THE NEXT FUNCTION
                 hint = self.logic.check_guess(person_accused[0], self.gadget_accusation[0], self.logic.current_room[0])
-                print("TEST CHEAT", self.logic.solution_list)
+                # print("TEST CHEAT", self.logic.solution_list)
                 playsound('assets/sounds/punch.wav')
                 self.type_of_guess()
 
