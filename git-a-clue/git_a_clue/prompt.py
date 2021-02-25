@@ -21,13 +21,13 @@ hand_o_cards = "git_a_clue/assets_ascii/hand_o_cards.txt"
 ascii_murder = "git_a_clue/assets_ascii/murder.txt"
 
 john_outline = "git_a_clue/assets_ascii/john_outline.txt"
-
+scary_john = "git_a_clue/assets_ascii/scary_john.txt"
 #*********** you are here.... *******
 
 you_front_desk = "git_a_clue/assets_ascii/you_are_here_frontd.txt"
 
 #*********** GADGETS ***************
-ascii_gadgets = "git_a_clue/assets_ascii/gadgets.txt"
+ascii_gadgets = "git_a_clue/assets_ascii/gadgets_word.txt"
 
 keyboard = "git_a_clue/assets_ascii/keyboard.txt"
 laptop = "git_a_clue/assets_ascii/laptop.txt"
@@ -86,7 +86,6 @@ class Prompt:
         time.sleep(2)
         print(print_ascii(ascii_murder))
         time.sleep(2)
-        
         print(greeting)    
         print(white_and_red_background + greeting_pt2 + color_end)
         print("  ")
@@ -314,12 +313,17 @@ class Prompt:
                         print(f"Moving to the {self.logic.current_room[0]}...")
                         temp_room = self.logic.current_room[0]
                         counter = 0
-                        for i in rooms:
+                        for i in self.logic.move_rooms:
                             if temp_room == i:
                                 map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
                                 print(print_ascii(map))
                             counter += 1    
                         time.sleep(1)
+                        #TODO
+                        #if at frontdesk
+                        #print(print_ascii(you_front_desk))
+
+
                         #CALL THE NEXT FUNCTION
                         self.sus_accusation()
                 #else re-prompt
@@ -358,9 +362,16 @@ class Prompt:
                     check_input(user_next_option) 
                 elif user_input == "room":
                     #TODO current "you are here" ascii
-                    #print(print_ascii(you_front_desk))
-                    print("You're currently in ", str(self.logic.current_room))
+                    
+                    print(green + "You're currently in ", (self.logic.current_room[0]) + color_end)
                     print("   ")
+                    temp_room = self.logic.current_room[0]
+                    counter = 0
+                    for i in self.logic.move_rooms:
+                        if temp_room == i:
+                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            print(print_ascii(map))
+                        counter += 1  
                     print("Please choose from available rooms:")
                     print("Type:")
                     print(murder_rooms)
@@ -431,8 +442,15 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
-                    print("You are currently in ", str(self.logic.current_room))
+                    print(green + "You're currently in ", (self.logic.current_room[0]) + color_end)
                     print("  ")
+                    temp_room = self.logic.current_room[0]
+                    counter = 0
+                    for i in self.logic.move_rooms:
+                        if temp_room == i:
+                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            print(print_ascii(map))
+                        counter += 1
                     print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
@@ -501,8 +519,15 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
-                    print("You're currently in ", str(self.logic.current_room))
+                    print(green + "You're currently in ", (self.logic.current_room[0]) + color_end)
                     print("  ")
+                    temp_room = self.logic.current_room[0]
+                    counter = 0
+                    for i in self.logic.move_rooms:
+                        if temp_room == i:
+                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            print(print_ascii(map))
+                        counter += 1
                     print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
@@ -542,19 +567,27 @@ class Prompt:
                     self.roll_and_rooms()
                 elif user_input == "rules":
                     self.menu.rules()
-                    print(roll_or_warning)
+                    print(colored(roll_or_warning, "red"))
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
                     print(print_ascii(hand_o_cards))
                     print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
-                    print(roll_or_warning)
+                    print(colored(roll_or_warning, "red"))
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
-                    print("You're currently in ", str(self.logic.current_room))
-                    print(roll_or_warning)
+                    print(green + "You're currently in ", (self.logic.current_room[0]) + color_end)
+                    print("  ")
+                    temp_room = self.logic.current_room[0]
+                    counter = 0
+                    for i in self.logic.move_rooms:
+                        if temp_room == i:
+                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            print(print_ascii(map))
+                        counter += 1
+                    print(colored(roll_or_warning, "red"))
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 else:
@@ -570,9 +603,9 @@ class Prompt:
 
     def final_guess(self):
         final_accusation = []
-
-        print(f"Alright {self.avatar}, it's time to take the final whiteboard and see if you can avenge John & pass the test.")
-
+        print("  ")
+        print(colored(f" Alright {self.avatar}, it's time to take the final whiteboard and see if you can avenge John & pass the test. ", "green"))
+        print(print_ascii(john_outline))
         print("Who do you think did it?")
         self.sus_helper()
         sus_response = self.logic.normalize(input("> "))
@@ -616,8 +649,15 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     person_input(user_next_option) 
                 elif user_input == "room":
-                    print("You're currently in ", str(self.logic.current_room))
+                    print(green + "You're currently in ", (self.logic.current_room[0]) + color_end)
                     print("  ")
+                    temp_room = self.logic.current_room[0]
+                    counter = 0
+                    for i in self.logic.move_rooms:
+                        if temp_room == i:
+                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            print(print_ascii(map))
+                        counter += 1
                     print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
@@ -680,8 +720,15 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "room":
-                    print("You're currently in ", str(self.logic.current_room))
+                    print(green + "You're currently in ", (self.logic.current_room[0]) + color_end)
                     print("  ")
+                    temp_room = self.logic.current_room[0]
+                    counter = 0
+                    for i in self.logic.move_rooms:
+                        if temp_room == i:
+                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            print(print_ascii(map))
+                        counter += 1
                     print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
@@ -735,8 +782,15 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "room":
-                    print("You're currently in ", str(self.logic.current_room))
+                    print(green + "You're currently in ", (self.logic.current_room[0]) + color_end)
                     print("  ")
+                    temp_room = self.logic.current_room[0]
+                    counter = 0
+                    for i in self.logic.move_rooms:
+                        if temp_room == i:
+                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            print(print_ascii(map))
+                        counter += 1
                     print("Please choose from available rooms.")
                     print("Type:")
                     self.room_helper()
@@ -755,17 +809,35 @@ class Prompt:
 
         room_input(place_option)
 
-        print("Sending your report to Wadsworth for review.....")
+        print("Sending your report to Brook for review.....")
 
         time.sleep(1)
 
         if final_accusation == self.logic.solution_list:
             print(f"You did it! You solved John's murder!! It was {final_accusation[0]} with the {final_accusation[1]} in the {final_accusation[2]}")
             #TODO: BRING ON THE ASCII
+            temp_gadget = final_accusation[1]
+            counter = 0
+            for i in self.logic.perma_gadgets:
+                if temp_gadget == i:
+                    map = f"git_a_clue/assets_ascii/gadget_{counter}.txt"
+                    print(print_ascii(map))
+                counter += 1
+            print(" ")    
+
 
         else:   
             print(f"What did you learn about learning, because you didn't solve this crime! It was {self.logic.solution_list[0]} with the {self.logic.solution_list[1]} in the {self.logic.solution_list[2]}")
             #TODO: BRING ON THE ASCII
+            temp_gadget = self.logic.solution_list[1]
+            counter = 0
+            for i in self.logic.perma_gadgets:
+                if temp_gadget == i:
+                    map = f"git_a_clue/assets_ascii/gadget_{counter}.txt"
+                    print(print_ascii(map))
+                counter += 1
+            print(" ")    
+
 
         print("What would you like to do next? Type (restart) to kill some more time, (rules) to view the brief, or (quit).")
         response = self.logic.normalize(input("> "))     
@@ -821,6 +893,7 @@ class Prompt:
         self.accused_person = []
         self.gadget_accusation = []
         print("John hates a quitter - now his ghost will forever haunt your CSS.")
+        print(print_ascii(scary_john))
         #TODO:  ASCIIprint outline or a dead computer??
         # time.sleep(3)
         # os.system('cls' if os.name == 'nt' else 'clear')
