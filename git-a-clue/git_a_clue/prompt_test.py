@@ -203,7 +203,12 @@ class Prompt:
                 print(red + "Aaron was out of town, pick an avatar from the list" + color_end)
                 print("Type:")
                 self.sus_helper()
-                user_next_option = self.logic.normalize(input("> "))
+                if mock_input == 'g':
+                    user_next_option = 'quit'
+                else: 
+                    user_next_option = self.logic.normalize(input("> "))   
+
+                # user_next_option = self.logic.normalize(input("> "))
                 check_input(user_next_option)     
             #check to ensure input is in the available options          
             elif user_input in self.lib.keys():
@@ -216,26 +221,47 @@ class Prompt:
                     print(red + "Before we play, pick an avatar." + color_end)
                     print("Type:")
                     self.sus_helper()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'roll':
+                        user_next_option = 'quit'
+                    else: 
+                        user_next_option = self.logic.normalize(input("> "))   
+
+                    # user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
                     print(red + "Before we play, pick an avatar." + color_end)
                     print("Type:")
                     self.sus_helper()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'rules':
+                        user_next_option = 'quit'
+                    else: 
+                        user_next_option = self.logic.normalize(input("> "))
+
+
+                    # user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
                     print(red + "Before we play, pick an avatar." + color_end)
                     print("Type:")
                     self.sus_helper()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'hand':
+                        user_next_option = 'quit'
+                    else: 
+                        user_next_option = self.logic.normalize(input("> "))
+
+                    # user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option)
                 elif user_input == "room":
                     print(red + "Currently at the Front Desk, ready to play." + color_end)
                     print("Type:")
                     self.sus_helper()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'room':
+                        user_next_option = 'quit'
+                    else: 
+                        user_next_option = self.logic.normalize(input("> "))
+                    
+                    # user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 else:
                     self.leave_boddy_on_read()

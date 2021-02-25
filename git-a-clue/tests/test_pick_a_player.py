@@ -16,7 +16,6 @@ from git_a_clue.menu_logic_test import Menu_Logic
 ###########################
 
 
-
 # @pytest.mark.skip("pending")  
 def test_capture_pick_bad_input(capsys):
     Prompt().pick_a_player('yellow')
@@ -25,34 +24,35 @@ def test_capture_pick_bad_input(capsys):
     assert 'Please choose you avatar' in out 
 
 # @pytest.mark.skip("pending")  
-def test_capture_start_play_input(capsys):
-    Prompt().start_game('play')
+def test_capture_pick_g_input(capsys):
+    Prompt().pick_a_player('g')
     out,err = capsys.readouterr()
-    assert 'John hates a quitter' in out 
-
-# @pytest.mark.skip("pending")  
-def test_capture_start_roll_input(capsys):
-    Prompt().start_game('roll')
-    out,err = capsys.readouterr()
-    assert 'John hates a quitter' in out 
-
-# @pytest.mark.skip("pending")  
-def test_capture_start_rules_input(capsys):
-    Prompt().start_game('rules')
-    out,err = capsys.readouterr()
-    assert 'John hates a quitter' in out 
-
-# @pytest.mark.skip("pending")  
-def test_capture_start_hand_input(capsys):
-    Prompt().start_game('hand')
-    out,err = capsys.readouterr()
-    assert 'No hand dealt' in out 
+    assert 'Aaron' in out 
     
 # @pytest.mark.skip("pending")  
-def test_capture_start_room_input(capsys):
-    Prompt().start_game('room')
+def test_capture_pick_roll_input(capsys):
+    Prompt().pick_a_player('roll')
     out,err = capsys.readouterr()
-    assert 'John hates a quitter' in out 
+    assert 'pick an avatar' in out 
+
+
+# @pytest.mark.skip("pending")  
+def test_capture_pick_rules_input(capsys):
+    Prompt().pick_a_player('rules')
+    out,err = capsys.readouterr()
+    assert 'Before we play' in out 
+
+# @pytest.mark.skip("pending")  
+def test_capture_pick_hand_input(capsys):
+    Prompt().pick_a_player('hand')
+    out,err = capsys.readouterr()
+    assert 'pick an avatar' in out 
+    
+# @pytest.mark.skip("pending")  
+def test_capture_pick_room_input(capsys):
+    Prompt().pick_a_player('room')
+    out,err = capsys.readouterr()
+    assert 'Front Desk' in out 
 
 ##############################
 # @pytest.mark.skip("pending")    
