@@ -1,7 +1,7 @@
 import os
 import re
-from main_logic import *
-from prompt import *
+# from git_a_clue.main_logic import *
+# from prompt import *
 import time
 
 class Menu_Logic: 
