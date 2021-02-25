@@ -1,6 +1,8 @@
 import os
 import re
+from termcolor import colored
 from main_logic import *
+
 # from prompt import *
 import time
 
@@ -55,7 +57,7 @@ class Menu_Logic:
                 
             5. You've only got one chance at your final whiteboard, so study hard"""
         # clear screen and re-display menu
-        print(rules)
+        print(colored(rules, "green"))
         time.sleep(5)
         os.system('cls' if os.name == 'nt' else 'clear')
         
