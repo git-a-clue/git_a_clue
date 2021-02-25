@@ -12,7 +12,7 @@ from git_a_clue.menu_logic_test import Menu_Logic
 # and with if/else statements around both expected input areas
 
 ###########################
-# gad_accusation function tests
+# type_of_guess function tests
 ###########################
 
 # @pytest.mark.skip("pending")
