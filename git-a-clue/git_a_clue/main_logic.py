@@ -184,9 +184,9 @@ class Clue_Logic:
         self.solution_list.clear()
         self.player_hand.clear()
         self.available_rooms_check.clear()
-        self.suspects = ['s1', 's2', 's3', 's4', 's5', 's6']
-        self.gadgets = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6']
-        self.rooms = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7']
+        self.suspects = ['Roger Huba', 'Robin Apparicio', 'Phil Werner', 'Heather Cherewaty', 'Dario Thornhill', 'Teri Pfeffer']
+        self.gadgets = ['Death by Whiteboard', 'Apple Pencil shiv', 'Bludgeoned by Keyboard', 'Electrocuted by Laptop', 'Strangled by Ethernet', 'Poisoned Donuts']
+        self.rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'John\'s Study']
         self.current_room = "Front Desk - Roll the dice to explore campus"
 
         
