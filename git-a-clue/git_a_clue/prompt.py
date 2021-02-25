@@ -13,28 +13,28 @@ import os
 
 # *********** ASCII Variables ************
 
-computer_cf = "git_a_clue/assets_ascii/clue_comp.txt"
-floorplan = "git_a_clue/assets_ascii/cf_floorplan.txt"
-dice_animation = "git_a_clue/assets_animation/animation"
-walk_hall = "git_a_clue/assets_ascii/walk_down_hall.txt"
-hand_o_cards = "git_a_clue/assets_ascii/hand_o_cards.txt"
-ascii_murder = "git_a_clue/assets_ascii/murder.txt"
+computer_cf = "assets_ascii/clue_comp.txt"
+floorplan = "assets_ascii/cf_floorplan.txt"
+dice_animation = "assets_animation/animation"
+walk_hall = "assets_ascii/walk_down_hall.txt"
+hand_o_cards = "assets_ascii/hand_o_cards.txt"
+ascii_murder = "assets_ascii/murder.txt"
 
-john_outline = "git_a_clue/assets_ascii/john_outline.txt"
-scary_john = "git_a_clue/assets_ascii/scary_john.txt"
+john_outline = "assets_ascii/john_outline.txt"
+scary_john = "assets_ascii/scary_john.txt"
 #*********** you are here.... *******
 
-you_front_desk = "git_a_clue/assets_ascii/you_are_here_frontd.txt"
+you_front_desk = "assets_ascii/you_are_here_frontd.txt"
 
 #*********** GADGETS ***************
-ascii_gadgets = "git_a_clue/assets_ascii/gadgets_word.txt"
+ascii_gadgets = "assets_ascii/gadgets_word.txt"
 
-keyboard = "git_a_clue/assets_ascii/keyboard.txt"
-laptop = "git_a_clue/assets_ascii/laptop.txt"
-whiteboard = "git_a_clue/assets_ascii/killer_whiteboard.txt"
-ethernet = "git_a_clue/assets_ascii/ethernet_cord.txt"
-donut = "git_a_clue/assets_ascii/donut.txt"
-apple_pen = "git_a_clue/assets_ascii/apple_pen.txt"
+keyboard = "assets_ascii/keyboard.txt"
+laptop = "assets_ascii/laptop.txt"
+whiteboard = "assets_ascii/killer_whiteboard.txt"
+ethernet = "assets_ascii/ethernet_cord.txt"
+donut = "assets_ascii/donut.txt"
+apple_pen = "assets_ascii/apple_pen.txt"
 #***********color/color-combos***********
 white_and_red_background = "\033[4;37;41m"
 white_and_green_bkgrnd = "\033[4;30;42m"
@@ -312,7 +312,7 @@ class Prompt:
                         counter = 0
                         for i in self.logic.move_rooms:
                             if temp_room == i:
-                                map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                                map = f"assets_ascii/youare_{counter}.txt"
                                 print(print_ascii(map))
                             counter += 1    
                         time.sleep(1)
@@ -362,7 +362,7 @@ class Prompt:
                     counter = 0
                     for i in self.logic.move_rooms:
                         if temp_room == i:
-                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            map = f"assets_ascii/youare_{counter}.txt"
                             print(print_ascii(map))
                         counter += 1  
                     print(colored("Please choose from available rooms:", "green"))
@@ -440,7 +440,7 @@ class Prompt:
                     counter = 0
                     for i in self.logic.move_rooms:
                         if temp_room == i:
-                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            map = f"assets_ascii/youare_{counter}.txt"
                             print(print_ascii(map))
                         counter += 1
                     print(colored("Please choose from available suspects.", "green"))
@@ -517,7 +517,7 @@ class Prompt:
                     counter = 0
                     for i in self.logic.move_rooms:
                         if temp_room == i:
-                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            map = f"assets_ascii/youare_{counter}.txt"
                             print(print_ascii(map))
                         counter += 1
                     print(colored("Please choose from available gadgets.", "green"))
@@ -575,7 +575,7 @@ class Prompt:
                     counter = 0
                     for i in self.logic.move_rooms:
                         if temp_room == i:
-                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            map = f"assets_ascii/youare_{counter}.txt"
                             print(print_ascii(map))
                         counter += 1
                     print(colored(roll_or_warning, "red"))
@@ -645,7 +645,7 @@ class Prompt:
                     counter = 0
                     for i in self.logic.move_rooms:
                         if temp_room == i:
-                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            map = f"assets_ascii/youare_{counter}.txt"
                             print(print_ascii(map))
                         counter += 1
                     print(colored("Please choose from available suspects.", "green"))
@@ -715,7 +715,7 @@ class Prompt:
                     counter = 0
                     for i in self.logic.move_rooms:
                         if temp_room == i:
-                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            map = f"assets_ascii/youare_{counter}.txt"
                             print(print_ascii(map))
                         counter += 1
                     print(colored("Please choose from available gadgets.", "green"))
@@ -777,7 +777,7 @@ class Prompt:
                     counter = 0
                     for i in self.logic.move_rooms:
                         if temp_room == i:
-                            map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                            map = f"assets_ascii/youare_{counter}.txt"
                             print(print_ascii(map))
                         counter += 1
                     print(colored("Please choose from available rooms.", "green"))
@@ -809,7 +809,7 @@ class Prompt:
             counter = 0
             for i in self.logic.perma_gadgets:
                 if temp_gadget == i:
-                    map = f"git_a_clue/assets_ascii/gadget_{counter}.txt"
+                    map = f"assets_ascii/gadget_{counter}.txt"
                     print(print_ascii(map))
                 counter += 1
             print(" ")    
@@ -822,7 +822,7 @@ class Prompt:
             counter = 0
             for i in self.logic.perma_gadgets:
                 if temp_gadget == i:
-                    map = f"git_a_clue/assets_ascii/gadget_{counter}.txt"
+                    map = f"assets_ascii/gadget_{counter}.txt"
                     print(print_ascii(map))
                 counter += 1
             print(" ")    
