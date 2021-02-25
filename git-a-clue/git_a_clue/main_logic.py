@@ -18,42 +18,19 @@ green = "\033[1;32m"
 aqua = "\033[1;36m"
 #******************************
 
-
-
-
-
-# time adds suspense...
-
-# Welcome message
-
-# Start option
-# Rules in logistics.py
-
-# pick avatar
-
-# deal solution
-## call the card classes and remove 6 with random index of one of each (0-6)
-
-# deal player cards
-## call the card classes and remove 6 with random index of two of each s/w/r
-## remaining is computer hints
-
-
-
-
 class Clue_Logic: 
 
     suspects = ['Roger Huba', 'Robin Apparicio', 'Phil Werner', 'Heather Cherewaty', 'Dario Thornhill', 'Teri Pfeffer']
     perma_suspects = ['Roger Huba', 'Robin Apparicio', 'Phil Werner', 'Heather Cherewaty', 'Dario Thornhill', 'Teri Pfeffer']
     gadgets = ['Death by Whiteboard', 'Apple Pencil shiv', 'Bludgeoned by Keyboard', 'Electrocuted by Laptop', 'Strangled by Ethernet', 'Poisoned Donuts']
     perma_gadgets = ['Death by Whiteboard', 'Apple Pencil shiv', 'Bludgeoned by Keyboard', 'Electrocuted by Laptop', 'Strangled by Ethernet', 'Poisoned Donuts']
-    rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'John\'s Study']
+    rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'Johns Study']
     move_rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'Johns Study']
     solution_list = [] # call start_game_deal_cards on each list_from 
     player_hand = [] # call start_game_deal_cards 2x each list_from
     available_rooms_check = []
 
-    def __init__(self, rounds=0, current_room='the Front Desk - Roll the dice to explore campus'):
+    def __init__(self, rounds=0, current_room=['the Front Desk - Roll the dice to explore campus']):
         #moving rounds
         self.rounds = rounds
         self.current_room = current_room
@@ -92,55 +69,45 @@ class Clue_Logic:
                     self.start_game_deal_cards(self.rooms, self.player_hand)
     
 
-    def check_guess(self, L1, L2, L3, check = 0):
+    def check_guess(self, L1, L2, L3):
         """ randomize order of comparing lists; remember to pass in (suspect, gadget, room) """
         check = self.random_helper(1,3)
         
         if check == 1:
             if L1 in self.suspects:
                 print(colored(f"Not this time we have {L1}", "green"))
-                # display menu for next option
                 
             elif L2 in self.gadgets:
                 print(colored(f"Not this time we have {L2}", "green"))
-                # display menu for next option
                 
             elif L3 in self.rooms:
                 print(colored(f"Not this time we have {L3}", "green"))
-                # display menu for next option
             else:
                 print(red + "The TA's can't help and are going to take the next ticket in the queue" + color_end)
         if check == 2:
             if L2 in self.gadgets:
                 print(colored(f"Not this time we have {L2}", "green"))
-                # display menu for next option
                 
             elif L3 in self.rooms:
                 print(colored(f"Not this time we have {L3}", "green"))
-                # display menu for next option
                 
             elif L1 in self.suspects:
                 print(colored(f"Not this time we have {L1}", "green"))
-                # display menu for next option
                 
             else:
                 print(red + "The TA's can't help and are going to take the next ticket in the queue" + color_end)
         if check == 3:
             if L3 in self.rooms:
                 print(colored(f"Not this time we have {L3}", "green"))
-                # display menu for next option
                 
             elif L1 in self.suspects:
                 print(colored(f"Not this time we have {L1}", "green"))
-                # display menu for next option
                 
             elif L2 in self.gadgets:
                 print(colored(f"Not this time we have {L2}", "green"))
-                # display menu for next option
                 
             else:
                 print(red + "The TA's can't help and are going to take the next ticket in the queue" + color_end)
-        # self.prompt.type_of_guess()
 
 
     def roll_dice(self):
@@ -155,15 +122,13 @@ class Clue_Logic:
     def eligible_rooms(self):
         perma_roll = self.roll_dice()
         roll = perma_roll
-        # print("ROLL", roll)
-        #store variables
         poss_move = []
         index = 0
         #edge case - if roll is 6, can pick from any room
         if roll == 6:
             poss_move = self.move_rooms
             #remove current room from list
-            if self.current_room != "the Front Desk - Roll the dice to explore campus":
+            if self.current_room[0] != "the Front Desk - Roll the dice to explore campus":
                 poss_move.remove(self.current_room[0])
                 available_rooms_check = []
                 available_rooms_check.append(poss_move)
@@ -186,13 +151,9 @@ class Clue_Logic:
         self.available_rooms_check.clear()
         self.suspects = ['Roger Huba', 'Robin Apparicio', 'Phil Werner', 'Heather Cherewaty', 'Dario Thornhill', 'Teri Pfeffer']
         self.gadgets = ['Death by Whiteboard', 'Apple Pencil shiv', 'Bludgeoned by Keyboard', 'Electrocuted by Laptop', 'Strangled by Ethernet', 'Poisoned Donuts']
-        self.rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'John\'s Study']
-        self.current_room = "the Front Desk - Roll the dice to explore campus"
+        self.rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'Johns Study']
+        self.current_room = ["the Front Desk - Roll the dice to explore campus"]
 
         
 
 
-
-# if __name__ == "__main__":
-#     test_logic = Clue_Logic()
-#     test_logic.eligible_rooms(5)
