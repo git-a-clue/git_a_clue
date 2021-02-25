@@ -16,7 +16,7 @@ from git_a_clue.menu_logic_test import Menu_Logic
 ###########################
 
 
-# @pytest.mark.skip("pending")  
+@pytest.mark.skip("pending")  
 def test_capture_deal_bad_input(capsys):
     Prompt().time_to_deal_and_pick('kim','yellow')
     out,err = capsys.readouterr()

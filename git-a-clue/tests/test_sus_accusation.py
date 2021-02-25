@@ -54,3 +54,33 @@ def test_capture_rolo_room_input(capsys):
     out,err = capsys.readouterr()
     assert 'Please choose from available rooms:' in out 
 
+##############################
+
+@pytest.mark.skip("pending")
+def test_sus_accusation_bad_input(capsys):
+    Prompt().sus_accusation('orange')
+    out,err = capsys.readouterr()
+    
+    assert 'Please choose from available' in out 
+
+
+@pytest.mark.skip("pending")
+def test_gad_accusation_bad_input(capsys):
+    Prompt().gad_accusation('kim','orange')
+    out,err = capsys.readouterr()
+    
+    assert 'Please choose from available' in out 
+
+
+@pytest.mark.skip("pending")
+def test_type_of_guess_bad_input(capsys):
+    actual = Prompt().type_of_guess('purple')
+    captured = capsys.readouterr()
+    assert 'Please choose either (final) or (roll).' in captured.out
+    
+
+@pytest.mark.skip("pending")
+def test_final_guess_bad_input(capsys):
+    actual = Prompt().final_guess('g','yellow','green')
+    captured = capsys.readouterr()
+    assert 'Please choose from available suspects..' in captured.out

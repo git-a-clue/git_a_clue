@@ -119,17 +119,6 @@ def test_check_guess_have_solution2(capsys):
     captured = capsys.readouterr()
     assert captured.out == f"CHEAT {truth}\nSorry no help here!\n"
 
-# @pytest.mark.skip("pending")
-def test_check_guess_have_solution3(capsys):
-    clue = Clue_Logic()
-    sol_return = clue.solution_deal()
-    truth = clue.solution_list
-    
-    actual = clue.check_guess(truth[0], truth[1], truth[2],3)
-    captured = capsys.readouterr()
-    assert captured.out == f"CHEAT {truth}\nSorry no help here!\n"
-
-# If we need better test coverage we can add tests for the rest of the cases.
 
 # @pytest.mark.skip("pending")
 def test_roll_dice():

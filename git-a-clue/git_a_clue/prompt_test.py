@@ -4,7 +4,7 @@
 # from git_a_clue.menu_logic import Menu_Logic
 # from git_a_clue.ascii_func import print_ascii
 # from git_a_clue.ascii_func import animate_ascii
-from termcolor import colored
+# from termcolor import colored
 
 from .main_logic_test import Clue_Logic
 from .menu_logic_test import Menu_Logic
@@ -411,7 +411,10 @@ class Prompt:
                     print("Please choose from available rooms:")  
                     print("Type:")      
                     print(murder_rooms)
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'a':
+                        user_next_option = 'quit'
+                    else:
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option)
                 else:
                     room_choice = rooms[self.lib[user_input]]
@@ -431,7 +434,11 @@ class Prompt:
                             counter += 1    
                         time.sleep(1)
                         #CALL THE NEXT FUNCTION
-                        self.sus_accusation()
+                        if mock_input == 'a':
+                            user_next_option = 'quit'
+                        else:
+
+                            self.sus_accusation()
                 #else re-prompt
                     else:
                         print("Please choose from available rooms:")  
@@ -447,7 +454,12 @@ class Prompt:
                     print("Please choose from available rooms:")                 
                     print("Type:")
                     print(murder_rooms)
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'roll':
+                        user_next_option = 'quit'
+                    else:
+
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
@@ -455,7 +467,11 @@ class Prompt:
                     print("Please choose from available rooms:")
                     print("Type:")
                     print(murder_rooms)
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'rules':
+                        user_next_option = 'quit'
+                    else:
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
                     print(print_ascii(hand_o_cards))
@@ -464,7 +480,11 @@ class Prompt:
                     print("Please choose from available rooms:")
                     print("Type:")
                     print(murder_rooms)
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'hand':
+                        user_next_option = 'quit'
+                    else:
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
                     #TODO current "you are here" ascii
@@ -474,9 +494,15 @@ class Prompt:
                     print("Please choose from available rooms:")
                     print("Type:")
                     print(murder_rooms)
-                    user_next_option = self.logic.normalize(input("> "))
+                    print(murder_rooms)
+                    if mock_input == 'room':
+                        user_next_option = 'quit'
+                    else:
+
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
-                else:
+                elif user_input == 'quit':
                     self.leave_boddy_on_read()
 
             #If all else fails, re-print rooms & call the function recursively
@@ -486,10 +512,8 @@ class Prompt:
                 print("Type:")      
                 print(rooms)
                 if mock_input != None:
-                    response = mock_input
                     user_next_option = 'quit'
                 else: 
-                    response = self.logic.normalize(input("> ")) 
                     user_next_option = self.logic.normalize(input("> "))
                 
                 # user_next_option = self.logic.normalize(user_input("> "))
