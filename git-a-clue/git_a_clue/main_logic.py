@@ -48,12 +48,12 @@ class Clue_Logic:
     gadgets = ['Death by Whiteboard', 'Apple Pencil shiv', 'Bludgeoned by Keyboard', 'Electrocuted by Laptop', 'Strangled by Ethernet', 'Poisoned Donuts']
     perma_gadgets = ['Death by Whiteboard', 'Apple Pencil shiv', 'Bludgeoned by Keyboard', 'Electrocuted by Laptop', 'Strangled by Ethernet', 'Poisoned Donuts']
     rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'John\'s Study']
-    move_rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'John\'s Study']
+    move_rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'Johns Study']
     solution_list = [] # call start_game_deal_cards on each list_from 
     player_hand = [] # call start_game_deal_cards 2x each list_from
     available_rooms_check = []
 
-    def __init__(self, rounds=0, current_room='Front Desk - Roll the dice to explore campus'):
+    def __init__(self, rounds=0, current_room='the Front Desk - Roll the dice to explore campus'):
         #moving rounds
         self.rounds = rounds
         self.current_room = current_room
@@ -62,8 +62,8 @@ class Clue_Logic:
         return string.lower()
 
     def start_game_deal_cards(self, list_from, list_to):
-        """ Called for solution and pass s/w/r as list_from with list_to = solution; 
-        Called as player hand and pass 2x s/w/r as list-from with list_to = player_hand """
+        """ Called for solution and pass s/g/r as list_from with list_to = solution; 
+        Called as player hand and pass 2x s/g/r as list-from with list_to = player_hand """
         random_number = self.random_helper(0, len(list_from) - 1)
         card = list_from[random_number]
         list_to.append(card)
@@ -79,7 +79,7 @@ class Clue_Logic:
         self.start_game_deal_cards(self.suspects, self.solution_list)
         self.start_game_deal_cards(self.gadgets, self.solution_list)
         self.start_game_deal_cards(self.rooms, self.solution_list)
-        print("CHEAT", self.solution_list)
+
     
     def player_hand_deal(self):
         for i in range(1,4):
@@ -109,10 +109,10 @@ class Clue_Logic:
                 print(colored(f"Not this time we have {L3}", "green"))
                 # display menu for next option
             else:
-                print(red + "Sorry no help here!" + color_end)
+                print(red + "The TA's can't help and are going to take the next ticket in the queue" + color_end)
         if check == 2:
             if L2 in self.gadgets:
-                print(colored("Not this time we have {L2}", "green"))
+                print(colored(f"Not this time we have {L2}", "green"))
                 # display menu for next option
                 
             elif L3 in self.rooms:
@@ -124,7 +124,7 @@ class Clue_Logic:
                 # display menu for next option
                 
             else:
-                print(red + "Sorry no help here!" + color_end)
+                print(red + "The TA's can't help and are going to take the next ticket in the queue" + color_end)
         if check == 3:
             if L3 in self.rooms:
                 print(colored(f"Not this time we have {L3}", "green"))
@@ -139,7 +139,7 @@ class Clue_Logic:
                 # display menu for next option
                 
             else:
-                print(red + "Sorry no help here!" + color_end)
+                print(red + "The TA's can't help and are going to take the next ticket in the queue" + color_end)
         # self.prompt.type_of_guess()
 
 
@@ -157,14 +157,13 @@ class Clue_Logic:
         roll = perma_roll
         # print("ROLL", roll)
         #store variables
-        alpha = ['a', 'b', 'c', 'd', 'e','f','g']
         poss_move = []
         index = 0
         #edge case - if roll is 6, can pick from any room
         if roll == 6:
             poss_move = self.move_rooms
             #remove current room from list
-            if self.current_room != "Front Desk - Roll the dice to explore campus":
+            if self.current_room != "the Front Desk - Roll the dice to explore campus":
                 poss_move.remove(self.current_room[0])
                 available_rooms_check = []
                 available_rooms_check.append(poss_move)
@@ -188,7 +187,7 @@ class Clue_Logic:
         self.suspects = ['Roger Huba', 'Robin Apparicio', 'Phil Werner', 'Heather Cherewaty', 'Dario Thornhill', 'Teri Pfeffer']
         self.gadgets = ['Death by Whiteboard', 'Apple Pencil shiv', 'Bludgeoned by Keyboard', 'Electrocuted by Laptop', 'Strangled by Ethernet', 'Poisoned Donuts']
         self.rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'John\'s Study']
-        self.current_room = "Front Desk - Roll the dice to explore campus"
+        self.current_room = "the Front Desk - Roll the dice to explore campus"
 
         
 
