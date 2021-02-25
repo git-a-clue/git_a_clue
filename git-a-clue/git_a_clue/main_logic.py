@@ -4,6 +4,7 @@ from termcolor import colored
 import time
 # from playsound import playsound
 import random
+import re
 
 # *********** ASCII Variables ************
 dice_animation = "assets_animation/animation"

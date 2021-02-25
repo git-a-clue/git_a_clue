@@ -6,6 +6,7 @@ from termcolor import colored
 # from playsound import playsound
 import time
 import os
+import re
 # display welcome laptop
 
 # display greeting
@@ -20,6 +21,8 @@ walk_hall = "assets_ascii/walk_down_hall.txt"
 hand_o_cards = "assets_ascii/hand_o_cards.txt"
 ascii_murder = "assets_ascii/murder.txt"
 
+swear_jar = "assets_ascii/swear_jar.txt"
+
 john_outline = "assets_ascii/john_outline.txt"
 scary_john = "assets_ascii/scary_john.txt"
 #*********** you are here.... *******
@@ -29,12 +32,13 @@ you_front_desk = "assets_ascii/you_are_here_frontd.txt"
 #*********** GADGETS ***************
 ascii_gadgets = "assets_ascii/gadgets_word.txt"
 
-keyboard = "assets_ascii/keyboard.txt"
-laptop = "assets_ascii/laptop.txt"
-whiteboard = "assets_ascii/killer_whiteboard.txt"
-ethernet = "assets_ascii/ethernet_cord.txt"
-donut = "assets_ascii/donut.txt"
-apple_pen = "assets_ascii/apple_pen.txt"
+whiteboard = "assets_ascii/gadget_0.txt"
+apple_pen = "assets_ascii/gadget_1.txt"
+keyboard = "assets_ascii/gadget_2.txt"
+laptop = "assets_ascii/gadget_3.txt"
+ethernet = "assets_ascii/gadget_4.txt"
+donut = "assets_ascii/gadget_5.txt"
+
 #***********color/color-combos***********
 white_and_red_background = "\033[4;37;41m"
 white_and_green_bkgrnd = "\033[4;30;42m"
@@ -46,9 +50,6 @@ aqua = "\033[1;36m"
 purple = "\033[1;35m"
 
 #******************************
-
-
-
 
 
 class Prompt:
@@ -76,17 +77,23 @@ class Prompt:
     
         greeting = """
         There's been a murrrrrrder at Code Fellows! 
-        Mr Body needs your help to bring his killer to justice.
+        John Cokos needs your help to bring his killer to justice.
+        If you end up cussing out of maddening frustration...
+        then deposit to John's swear jar.
         
         """
         
+
         greeting_pt2 = " Type (PLAY) to investigate, (RULES) to view the brief, or (QUIT) to leave John's death a mystery. "
         
         print(print_ascii(computer_cf))
         time.sleep(2)
         print(print_ascii(ascii_murder))
         time.sleep(2)
-        print(colored(greeting, "green"))    
+        print(colored(greeting, "green")) 
+        print("  ")
+        print(print_ascii(swear_jar))   
+        print("  ")
         print(white_and_red_background + greeting_pt2 + color_end)
         print("  ")
         user_input = mock_input or input("> ")
@@ -377,7 +384,7 @@ class Prompt:
             else:
                 print(colored("Please choose from available rooms:", "green"))  
                 print("Type:")      
-                print(rooms)
+                print(murder_rooms)
                 user_next_option = self.logic.normalize(user_input("> "))
                 check_input(user_next_option)    
 
