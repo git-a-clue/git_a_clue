@@ -11,20 +11,13 @@ from git_a_clue.menu_logic import Menu_Logic
 # all pass with the addition of mock_input optional arguments
 # and with if/else statements around both expected input areas
 
-###################
-#  start_game tests
-###################
 
-   
 def test_capture_start_bad_input(capsys):
     Prompt().start_game('green')
     out,err = capsys.readouterr()
     
     assert 'Please enter a valid option' in out 
     
-###################
-#  pick_a_player tests
-###################
 
 # @pytest.mark.skip("pending")  
 def test_capture_pick_bad_input(capsys):
@@ -44,10 +37,6 @@ def test_capture_deal_bad_input(capsys):
     
     assert 'Please choose you avatar' in out 
 
- 
-###################
-#  roll_and_rooms tests
-###################
 
 # @pytest.mark.skip("pending")    
 def test_capture_roll_bad_input(capsys):
@@ -58,7 +47,7 @@ def test_capture_roll_bad_input(capsys):
 
 
 # @pytest.mark.skip("pending")
-def test_sus_accusation(capsys):
+def test_sus_accusation_bad_input(capsys):
     Prompt().sus_accusation('orange')
     out,err = capsys.readouterr()
     
@@ -66,7 +55,7 @@ def test_sus_accusation(capsys):
 
 
 # @pytest.mark.skip("pending")
-def test_gad_accusation(capsys):
+def test_gad_accusation_bad_input(capsys):
     Prompt().gad_accusation('kim','orange')
     out,err = capsys.readouterr()
     
@@ -74,16 +63,18 @@ def test_gad_accusation(capsys):
 
 
 # @pytest.mark.skip("pending")
-def test_type_of_guess(capsys):
+def test_type_of_guess_bad_input(capsys):
     actual = Prompt().type_of_guess('purple')
     captured = capsys.readouterr()
     assert 'Please choose either (final) or (roll).' in captured.out
     
+
 # @pytest.mark.skip("pending")
-def test_final_guess(capsys):
-    actual = Prompt().type_of_guess('purple')
+def test_final_guess_bad_input(capsys):
+    actual = Prompt().final_guess('g','yellow','green')
     captured = capsys.readouterr()
-    assert 'Please choose either (final) or (roll).' in captured.out
+    assert 'Please choose from available suspects..' in captured.out
+
 
 # https://dbader.org/blog/python-check-if-file-exists
 # https://www.devdungeon.com/content/python-use-stringio-capture-stdout-and-stderr
