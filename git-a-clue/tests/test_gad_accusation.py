@@ -18,46 +18,40 @@ from git_a_clue.menu_logic_test import Menu_Logic
 
 # @pytest.mark.skip("pending")    
 def test_capture_gad_bad_input(capsys):
-    Prompt().gad_accusation('yellow')
+    Prompt().gad_accusation('kim','yellow')
     out,err = capsys.readouterr()
     
     assert 'Please choose from available gadgets' in out 
     
 # @pytest.mark.skip("pending")  
 def test_capture_gad_g_input(capsys):
-    Prompt().gad_accusation('g')
+    Prompt().gad_accusation('kim','g')
     out,err = capsys.readouterr()
     assert 'Please choose from available gadgets' in out 
-
-@pytest.mark.skip("pending")  
-def test_capture_gad_key_input(capsys):
-    Prompt().gad_accusation('f')
-    out,err = capsys.readouterr()
-    assert 'Donuts' in out 
 
 
 # @pytest.mark.skip("pending")  
 def test_capture_gad_roll_input(capsys):
-    Prompt().gad_accusation('roll')
+    Prompt().gad_accusation('kim','roll')
     out,err = capsys.readouterr()
     assert 'Cannot re-roll' in out 
     
 # @pytest.mark.skip("pending")  
 def test_capture_gad_rules_input(capsys):
-    Prompt().gad_accusation('rules')
+    Prompt().gad_accusation('kim','rules')
     out,err = capsys.readouterr()
     assert 'Please choose from available gadgets' in out 
 
 
 # @pytest.mark.skip("pending")  
 def test_capture_gad_hand_input(capsys):
-    Prompt().gad_accusation('hand')
+    Prompt().gad_accusation('kim','hand')
     out,err = capsys.readouterr()
     assert 'This is your hand' in out 
     
 # @pytest.mark.skip("pending")  
 def test_capture_gad_room_input(capsys):
-    Prompt().gad_accusation('room')
+    Prompt().gad_accusation('kim','room')
     out,err = capsys.readouterr()
-    assert 'You are currently in' in out 
+    assert 'Apple Pencil' in out 
 

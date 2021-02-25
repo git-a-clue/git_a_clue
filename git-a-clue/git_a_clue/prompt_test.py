@@ -714,7 +714,7 @@ class Prompt:
 
                         user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
-                else:
+                elif user_input == 'quit':
                     self.leave_boddy_on_read()
             #If all else fails, re-print rooms & call the function recursively
             else:
@@ -723,10 +723,8 @@ class Prompt:
                 print("Type:")
                 self.gadget_helper()
                 if mock_input != None:
-                    L2 = mock_input
                     user_next_option = 'quit'
                 else: 
-                    L2 = self.logic.normalize(input("> ")) 
                     user_next_option = self.logic.normalize(input("> "))
 
                 # user_next_option = self.logic.normalize(input("> "))
