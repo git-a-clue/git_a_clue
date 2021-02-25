@@ -90,7 +90,6 @@ class Prompt:
         print(print_ascii(ascii_murder))
 
         playsound("assets/sounds/dun-dun-dun.wav")
-        # time.sleep(2)
         print(colored(greeting, "green"))    
 
         print(white_and_red_background + greeting_pt2 + color_end)
@@ -100,6 +99,9 @@ class Prompt:
         
         # user_input = mock_input or input("> ")
         # response = self.logic.normalize(input("> "))   
+        
+        
+        """VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION"""
         def check_input(user_input):
             #Check if input is outside of people choices
             if user_input == "play" or user_input == "p":
@@ -159,6 +161,9 @@ class Prompt:
         self.sus_helper()
         response = self.logic.normalize(input("> "))        
 
+        
+        
+        """VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION"""
         def check_input(user_input):
             #Check if input is outside of people choices
             if user_input == 'g':
@@ -244,15 +249,16 @@ class Prompt:
         print(print_ascii(hand_o_cards))
         print(white_and_green_bkgrnd + ', '.join(hand_holder) + color_end)
         playsound('assets/sounds/card-deal.wav')
-        # time.sleep(2)
+
 
         print(colored("""
         What would you like to do next?
         """, "green"))
         self.menu.menu()
         response = self.logic.normalize(input("> "))
-
-        #VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION
+        
+        
+        """VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION"""
         def check_input(user_input):
             #check input against menu prompts
             if self.menu.menu_validation(user_input) == True:
@@ -274,7 +280,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
-                    print(green + f"You're currently in {(self.logic.current_room)}" + color_end)
+                    print(green + f"You're currently in {(self.logic.current_room[0])}" + color_end)
                     print("Please choose from menu:")
                     self.menu.menu()
                     user_next_option = self.logic.normalize(input("> "))
@@ -298,6 +304,7 @@ class Prompt:
 
     def pick_a_room_helper(self, available_rooms):
         alpha = [white_and_red_background + ' A ' + color_end, white_and_red_background + ' B ' + color_end, white_and_red_background + ' C ' + color_end, white_and_red_background + ' D ' + color_end, white_and_red_background + ' E ' + color_end, white_and_red_background + ' F ' + color_end, white_and_red_background + ' G ' + color_end]
+        self.logic.available_rooms_check = []
         for i in range(len(available_rooms)):
             room_loop = f'{alpha[i]} for {available_rooms[i]}'
             print(room_loop)
@@ -310,8 +317,8 @@ class Prompt:
             if temp_room == i:
                 map = f"assets_ascii/youare_{counter}.txt"
                 print(print_ascii(map))
+                break
             counter += 1    
-        time.sleep(1)
 
     def cheat_helper(self):
         if self.logic.solution_list == []:
@@ -325,7 +332,6 @@ class Prompt:
         alpha = [white_and_red_background + ' A ' + color_end, white_and_red_background + ' B ' + color_end, white_and_red_background + ' C ' + color_end, white_and_red_background + ' D ' + color_end, white_and_red_background + ' E ' + color_end, white_and_red_background + ' F ' + color_end, white_and_red_background + ' G ' + color_end]
         print("  ")
         print(colored("Rolling...", "green"))
-        # time.sleep(1)
         rooms, roll = self.logic.eligible_rooms()
         print(green + f"You've rolled a {roll}" + color_end)
         playsound("assets/sounds/dice-roll.wav")
@@ -336,6 +342,9 @@ class Prompt:
         response = self.logic.normalize(input("> "))
 
 
+        
+        
+        """VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION"""
         def check_input(user_input):
             #check to ensure input is a-g
             if user_input in self.lib.keys():
@@ -396,7 +405,7 @@ class Prompt:
                 elif user_input == "room":
                     #TODO current "you are here" ascii
                     
-                    print(green + f"You're currently in {(self.logic.current_room)}" + color_end)
+                    print(green + f"You're currently in {(self.logic.current_room[0])}" + color_end)
                     print("   ") 
                     self.print_map_helper()
                     print(colored("Please choose from available rooms:", "green"))
@@ -406,14 +415,6 @@ class Prompt:
                     check_input(user_next_option) 
                 else:
                     self.leave_boddy_on_read()
-            # elif user_input == "cheat":
-            #     self.cheat_helper()
-            #     print(colored("Please choose from available rooms:", "green"))  
-            #     print("Type:")      
-            #     self.pick_a_room_helper(rooms)
-            #     user_next_option = self.logic.normalize(user_input("> "))
-            #     check_input(user_next_option)  
-            #If all else fails, re-print rooms & call the function recursively
             else:
                 print(colored("Invalid input!", "green"))
                 print("")
@@ -431,11 +432,14 @@ class Prompt:
 
     def sus_accusation(self):
         print(green + "Time to investigate & interrogate..." + color_end)
-        print(colored(f"Now that you're in the {self.logic.current_room[0]}, who do you think committed this heinous crime?!", "green"))
+        print(colored(f"Now that you're in {self.logic.current_room[0]}, who do you think committed this heinous crime?!", "green"))
         print("Type:")
         self.sus_helper()
         L1 = self.logic.normalize(input("> "))
 
+        
+        
+        """VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION"""
         def check_input(user_input):
             #Check if input is outside of people choices
             if user_input == 'g':
@@ -478,7 +482,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
-                    print(green + f"You're currently in {(self.logic.current_room)}" + color_end)
+                    print(green + f"You're currently in {(self.logic.current_room[0])}" + color_end)
                     print("  ")
                     self.print_map_helper()
                     print(colored("Please choose from available suspects.", "green"))
@@ -513,6 +517,9 @@ class Prompt:
         self.gadget_helper()
         L2 = self.logic.normalize(input("> "))
 
+        
+        
+        """VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION"""
         def check_input(user_input):
             #Check if input is outside of gadget choices
             if user_input == 'g':
@@ -527,6 +534,7 @@ class Prompt:
                 self.gadget_accusation.append(self.logic.perma_gadgets[self.lib[user_input]])
                 #CALL THE NEXT FUNCTION
                 hint = self.logic.check_guess(person_accused[0], self.gadget_accusation[0], self.logic.current_room[0])
+                # print("TEST CHEAT", self.logic.solution_list)
                 playsound('assets/sounds/punch.wav')
                 self.type_of_guess()
 
@@ -558,7 +566,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
-                    print(green + f"You're currently in {(self.logic.current_room)}" + color_end)
+                    print(green + f"You're currently in {(self.logic.current_room[0])}" + color_end)
                     print("  ")
                     self.print_map_helper()
                     print(colored("Please choose from available gadgets.", "green"))
@@ -597,6 +605,9 @@ class Prompt:
         print(colored(roll_or_warning, "red"))
         response = self.logic.normalize(input("> "))
 
+        
+        
+        """VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION"""
         def check_input(user_input):
             if user_input == 'final': 
                 self.final_guess()
@@ -617,7 +628,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
-                    print(green + f"You're currently in {(self.logic.current_room)}" + color_end)
+                    print(green + f"You're currently in {(self.logic.current_room[0])}" + color_end)
                     print("  ")
                     self.print_map_helper()
                     print(colored(roll_or_warning, "red"))
@@ -686,7 +697,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     person_input(user_next_option) 
                 elif user_input == "room":
-                    print(green + f"You're currently in {(self.logic.current_room)}" + color_end)
+                    print(green + f"You're currently in {(self.logic.current_room[0])}" + color_end)
                     print("  ")
                     temp_room = self.logic.current_room[0]
                     counter = 0
@@ -763,7 +774,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "room":
-                    print(green + f"You're currently in {(self.logic.current_room)}" + color_end)
+                    print(green + f"You're currently in {(self.logic.current_room[0])}" + color_end)
                     print("  ")
                     self.print_map_helper()
                     print(colored("Please choose from available gadgets.", "green"))
@@ -826,7 +837,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "room":
-                    print(green + f"You're currently in {(self.logic.current_room)}" + color_end)
+                    print(green + f"You're currently in {(self.logic.current_room[0])}" + color_end)
                     print("  ")
                     self.print_map_helper()
                     print(colored("Please choose from available rooms.", "green"))
@@ -860,7 +871,6 @@ class Prompt:
 
         if final_accusation == self.logic.solution_list:
             print(colored(f"You did it! You solved John's murder!! It was {final_accusation[0]}, {final_accusation[1]} in the {final_accusation[2]}", "green"))
-            playsound('assets/sounds/guitar.wav')
             #TODO: BRING ON THE ASCII
             temp_gadget = final_accusation[1]
             counter = 0
@@ -870,12 +880,13 @@ class Prompt:
                     print(print_ascii(map))
                 counter += 1
             
+            playsound('assets/sounds/guitar.wav')
             print(" ")    
 
 
         else:   
-            print(colored(f"What did you learn about learning, because you didn't solve this crime! It was {self.logic.solution_list[0]} with the {self.logic.solution_list[1]} in the {self.logic.solution_list[2]}", "green"))
-            playsound('assets/sounds/boo.wav')
+            print(colored(f"What did you learn about learning, because you didn't solve this crime! It was {self.logic.solution_list[0]}, {self.logic.solution_list[1]} in the {self.logic.solution_list[2]}", "green"))
+    
             #TODO: BRING ON THE ASCII
             temp_gadget = self.logic.solution_list[1]
             counter = 0
@@ -884,11 +895,15 @@ class Prompt:
                     map = f"assets_ascii/gadget_{counter}.txt"
                     print(print_ascii(map))
                 counter += 1
+            playsound('assets/sounds/boo.wav')
             print(" ")    
 
 
         print(white_and_red_background + "What would you like to do next? Type (restart) to kill some more time, (rules) to view the brief, or (quit)." + color_end)
         response = self.logic.normalize(input("> "))     
+        
+        
+        """VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION"""
         def check_input(user_input):
             #Check if input is outside of people choices
             kill_some_time = "Type (restart) to kill some more time, (rules) to view the brief, or (quit)."
@@ -896,6 +911,9 @@ class Prompt:
                 self.logic.reset_tables()
                 self.accused_person = []
                 self.gadget_accusation = []
+                print('First, John has to add to the swear jar')
+                print(print_ascii(swear_jar))
+                playsound('assets/sounds/coin.wav')
                 time.sleep(2)
                 os.system('cls' if os.name == 'nt' else 'clear')
                 self.start_game()
@@ -945,7 +963,7 @@ class Prompt:
         self.logic.reset_tables()
         self.accused_person = []
         self.gadget_accusation = []
-        print(green + "John hates a quitter - now his ghost will forever haunt your CSS." + color_end)
+        print(green + "John hates a quitter - his ghost will haunt your CSS, FOREVER." + color_end)
         print(print_ascii(scary_john))
         playsound('assets/sounds/game-over.wav')
 
