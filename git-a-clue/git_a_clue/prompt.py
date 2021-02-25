@@ -220,7 +220,7 @@ class Prompt:
 
         check_input(response)
 
-    def time_to_deal_and_pick(self, player_avatar): 
+    def time_to_deal_and_pick(self, player_avatar, mock_input = None): 
         #deal a solution
         self.logic.solution_deal()
         
@@ -244,12 +244,9 @@ class Prompt:
         What would you like to do next?
         """)
         self.menu.menu()
-                if mock_input != None:
-            response = mock_input
-        else: 
-            response = self.logic.normalize(input("> "))   
+        response = self.logic.normalize(input("> "))   
 
-        response = self.logic.normalize(input("> "))
+        # response = self.logic.normalize(input("> "))
 
         #VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION
         def check_input(user_input):
@@ -284,12 +281,13 @@ class Prompt:
                 print("Please choose from available menu choices.")
                 print("Please choose from menu:")
                 self.menu.menu()
+            
                 user_next_option = self.logic.normalize(input("> "))
                 check_input(user_next_option) 
         
         check_input(response)
 
-    def roll_and_rooms(self):
+    def roll_and_rooms(self, mock_input = None):
         alpha = ['a', 'b', 'c', 'd', 'e','f','g']
         print("Rolling...")
         time.sleep(1)
@@ -302,7 +300,13 @@ class Prompt:
             print(room_loop)
             murder_rooms.append(room_loop)
             self.logic.available_rooms_check.append(rooms[i])
-        response = self.logic.normalize(input("> "))
+        # response = self.logic.normalize(input("> "))
+        
+        if mock_input != None:
+            response = mock_input
+        else: 
+            response = self.logic.normalize(input("> "))   
+
         # print("ROOOOOLLLLLLINNNNNNNGGGGGGGG ROOOOOMMMM", murder_rooms)
         # Response = room choice >
         #validate input > 
@@ -380,19 +384,31 @@ class Prompt:
                 print("Please choose from available rooms:")  
                 print("Type:")      
                 print(rooms)
-                user_next_option = self.logic.normalize(user_input("> "))
+                if mock_input != None:
+                    response = mock_input
+                    user_next_option = 'quit'
+                else: 
+                    response = self.logic.normalize(input("> ")) 
+                    user_next_option = self.logic.normalize(input("> "))
+                
+                # user_next_option = self.logic.normalize(user_input("> "))
                 check_input(user_next_option)    
 
         check_input(response)
 
 
 
-    def sus_accusation(self):
+    def sus_accusation(self, mock_input = None):
         print("Time to investigate & interrogate...")
         print(f"Now that you're in the {self.logic.current_room[0]}, who do you think committed this heinous crime?!")
         print("Type:")
         self.sus_helper()
-        L1 = self.logic.normalize(input("> "))
+        if mock_input != None:
+            L1 = mock_input
+        else: 
+            L1 = self.logic.normalize(input("> "))   
+
+        # L1 = self.logic.normalize(input("> "))
 
         def check_input(user_input):
             #Check if input is outside of people choices
@@ -450,16 +466,29 @@ class Prompt:
                 print("Please choose from available suspects:")
                 print("Type:")
                 self.sus_helper()
-                user_next_option = self.logic.normalize(input("> "))
+                if mock_input != None:
+                    L1 = mock_input
+                    user_next_option = 'quit'
+                else: 
+                    L1 = self.logic.normalize(input("> ")) 
+                    user_next_option = self.logic.normalize(input("> "))
+
+                
+                # user_next_option = self.logic.normalize(input("> "))
                 check_input(user_next_option)
 
         check_input(L1)
 
-    def gad_accusation(self, person_accused):
+    def gad_accusation(self, person_accused, mock_input = None):
         print(f"And how do you think {person_accused[0]} did it?!")
         print("Type:")
         self.gadget_helper()
-        L2 = self.logic.normalize(input("> "))
+        if mock_input != None:
+            L2 = mock_input
+        else: 
+            L2 = self.logic.normalize(input("> "))   
+
+        # L2 = self.logic.normalize(input("> "))
 
         def check_input(user_input):
             #Check if input is outside of gadget choices
@@ -519,13 +548,20 @@ class Prompt:
                 print("Please choose from available gadgets.")
                 print("Type:")
                 self.gadget_helper()
-                user_next_option = self.logic.normalize(input("> "))
+                if mock_input != None:
+                    L2 = mock_input
+                    user_next_option = 'quit'
+                else: 
+                    L2 = self.logic.normalize(input("> ")) 
+                    user_next_option = self.logic.normalize(input("> "))
+
+                # user_next_option = self.logic.normalize(input("> "))
                 check_input(user_next_option)
 
         check_input(L2)
 
 
-    def type_of_guess(self):
+    def type_of_guess(self, mock_input = None):
         roll_or_warning = """
 
         Would you like to (roll) again or make a (final) accusation? 
@@ -534,7 +570,13 @@ class Prompt:
         Making a final accusation will end the game
         """
         print(roll_or_warning)
-        response = self.logic.normalize(input("> "))
+        if mock_input != None:
+            response = mock_input
+        else: 
+            response = self.logic.normalize(input("> "))   
+
+
+        # response = self.logic.normalize(input("> "))
 
         def check_input(user_input):
             if user_input == 'final': 
@@ -564,20 +606,32 @@ class Prompt:
             else:
                 #TODO: Should we make this line red??
                 print("Please choose either (final) or (roll).")
-                user_next_option = self.logic.normalize(input("> "))
+                if mock_input != None:
+                    response = mock_input
+                    user_next_option = 'quit'
+                else: 
+                    response = self.logic.normalize(input("> ")) 
+                    user_next_option = self.logic.normalize(input("> "))
+
+                # user_next_option = self.logic.normalize(input("> "))
                 check_input(user_next_option)
 
         check_input(response)
 
 
-    def final_guess(self):
+    def final_guess(self, mock_sus = None):
         final_accusation = []
 
         print(f"Alright {self.avatar}, it's time to take the final whiteboard and see if you can avenge boddy & pass the test.")
 
         print("Who do you think did it?")
         self.sus_helper()
-        sus_response = self.logic.normalize(input("> "))
+        if mock_sus != None:
+            sus_response = mock_input
+        else: 
+            sus_response = self.logic.normalize(input("> "))   
+
+        # sus_response = self.logic.normalize(input("> "))
 
         def person_input(user_input):
             #Check if input is outside of people choices
@@ -632,8 +686,15 @@ class Prompt:
                 print("Please choose from available suspects:")
                 print("Type:")
                 self.sus_helper()
+            if mock_input != None:
+                person_input = mock_input
+                user_next_option = 'quit'
+            else: 
+                person_input = self.logic.normalize(input("> ")) 
                 user_next_option = self.logic.normalize(input("> "))
-                person_input(user_next_option)
+
+                # user_next_option = self.logic.normalize(input("> "))
+                # person_input(user_next_option)
 
         person_input(sus_response)
 

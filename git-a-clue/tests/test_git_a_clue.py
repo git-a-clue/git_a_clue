@@ -215,44 +215,6 @@ def test_prompt_logic3():
     expected = []
     assert actual == expected
     
-    
-
-@pytest.mark.skip("pending")
-def test_start_game_bad_input(capsys):
-    actual = Prompt().start_game("crappy_value")
-    captured = capsys.readouterr()
-    
-    assert captured.out == "Please enter a valid option.\nType (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery."
-    
-@pytest.mark.skip("pending")
-def test_start_game3(capsys):
-    pass
-    
-@pytest.mark.skip("pending")
-def test_pick_a_player(capsys):
-    pass
-
-@pytest.mark.skip("pending")
-def test_time_to_deal_and_pick(capsys):
-    pass    
-
-@pytest.mark.skip("pending")
-def test_roll_and_rooms(capsys):
-    pass
-
-@pytest.mark.skip("pending")
-def test_sus_accusation():
-    pass
-
-@pytest.mark.skip("pending")
-def test_gad_accusation():
-    pass
-
-@pytest.mark.skip("pending")
-def test_type_of_guess():
-    actual = Prompt().type_of_guess()
-    captured = capsys.readouterr()
-    assert captured.out == 'W'
 
 
 # @pytest.mark.skip("pending")
