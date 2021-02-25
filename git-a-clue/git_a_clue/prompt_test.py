@@ -752,27 +752,47 @@ class Prompt:
 
         def check_input(user_input):
             if user_input == 'final': 
-                self.final_guess()
+                if mock_input == 'final':
+                    user_next_option = 'quit'
+                else:
+
+                    self.final_guess()
             #check input against menu prompts
             elif self.menu.menu_validation(user_input) == True:
                 if user_input == "roll":
-                    self.roll_and_rooms()
+                    if mock_input == 'roll':
+                        user_next_option = 'quit'
+                    else:
+
+                        self.roll_and_rooms()
                 elif user_input == "rules":
                     self.menu.rules()
                     print(roll_or_warning)
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'rules':
+                        user_next_option = 'quit'
+                    else:
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
                     print(print_ascii(hand_o_cards))
                     print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print(roll_or_warning)
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'hand':
+                        user_next_option = 'quit'
+                    else:
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
                     print("You're currently in ", str(self.logic.current_room))
                     print(roll_or_warning)
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'room':
+                        user_next_option = 'quit'
+                    else:
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 else:
                     self.leave_boddy_on_read()
@@ -780,10 +800,8 @@ class Prompt:
                 #TODO: Should we make this line red??
                 print("Please choose either (final) or (roll).")
                 if mock_input != None:
-                    response = mock_input
                     user_next_option = 'quit'
                 else: 
-                    response = self.logic.normalize(input("> ")) 
                     user_next_option = self.logic.normalize(input("> "))
 
                 # user_next_option = self.logic.normalize(input("> "))

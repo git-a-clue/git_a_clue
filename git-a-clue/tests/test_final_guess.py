@@ -53,3 +53,12 @@ def test_capture_type_of_guess_room_input(capsys):
     out,err = capsys.readouterr()
     assert 'Would you like' in out 
 
+##############################
+
+
+
+@pytest.mark.skip("pending")
+def test_final_guess_bad_input(capsys):
+    actual = Prompt().final_guess('g','yellow','green')
+    captured = capsys.readouterr()
+    assert 'Please choose from available suspects..' in captured.out
