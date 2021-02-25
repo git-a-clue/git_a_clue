@@ -97,48 +97,48 @@ class Clue_Logic:
         
         if check == 1:
             if L1 in self.suspects:
-                print(f"Not this time we have {L1}")
+                print(colored(f"Not this time we have {L1}", "green"))
                 # display menu for next option
                 
             elif L2 in self.gadgets:
-                print(f"Not this time we have {L2}")
+                print(colored(f"Not this time we have {L2}", "green"))
                 # display menu for next option
                 
             elif L3 in self.rooms:
-                print(f"Not this time we have {L3}")
+                print(colored(f"Not this time we have {L3}", "green"))
                 # display menu for next option
             else:
-                print("Sorry no help here!")
+                print(red + "Sorry no help here!" + color_end)
         if check == 2:
             if L2 in self.gadgets:
-                print(f"Not this time we have {L2}")
+                print(colored("Not this time we have {L2}", "green"))
                 # display menu for next option
                 
             elif L3 in self.rooms:
-                print(f"Not this time we have {L3}")
+                print(colored(f"Not this time we have {L3}", "green"))
                 # display menu for next option
                 
             elif L1 in self.suspects:
-                print(f"Not this time we have {L1}")
+                print(colored(f"Not this time we have {L1}", "green"))
                 # display menu for next option
                 
             else:
-                print("Sorry no help here!")
+                print(red + "Sorry no help here!" + color_end)
         if check == 3:
             if L3 in self.rooms:
-                print(f"Not this time we have {L3}")
+                print(colored(f"Not this time we have {L3}", "green"))
                 # display menu for next option
                 
             elif L1 in self.suspects:
-                print(f"Not this time we have {L1}")
+                print(colored(f"Not this time we have {L1}", "green"))
                 # display menu for next option
                 
             elif L2 in self.gadgets:
-                print(f"Not this time we have {L2}")
+                print(colored(f"Not this time we have {L2}", "green"))
                 # display menu for next option
                 
             else:
-                print("Sorry no help here!")
+                print(red + "Sorry no help here!" + color_end)
         # self.prompt.type_of_guess()
 
 
