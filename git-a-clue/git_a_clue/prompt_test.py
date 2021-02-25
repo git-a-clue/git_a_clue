@@ -4,7 +4,7 @@
 # from git_a_clue.menu_logic import Menu_Logic
 # from git_a_clue.ascii_func import print_ascii
 # from git_a_clue.ascii_func import animate_ascii
-# from termcolor import colored
+from termcolor import colored
 
 from .main_logic_test import Clue_Logic
 from .menu_logic_test import Menu_Logic
@@ -310,7 +310,10 @@ class Prompt:
         What would you like to do next?
         """)
         self.menu.menu()
-        response = self.logic.normalize(input("> "))   
+        if mock_input != None:
+            response = mock_input
+        else: 
+            response = self.logic.normalize(input("> "))   
 
         # response = self.logic.normalize(input("> "))
 
@@ -325,7 +328,12 @@ class Prompt:
                     self.menu.rules()
                     print("Please choose from menu:")
                     self.menu.menu()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'rules':
+                        user_next_option = 'quit'
+                    else: 
+                        user_next_option = self.logic.normalize(input("> "))
+
+                    # user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
                     print(print_ascii(hand_o_cards))
@@ -333,23 +341,37 @@ class Prompt:
                     print("  ")
                     print("Please choose from menu:")
                     self.menu.menu()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'hand':
+                        user_next_option = 'quit'
+                    else: 
+                        user_next_option = self.logic.normalize(input("> "))
+
+                    # user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
                     print(self.logic.current_room)
                     print("Please choose from menu:")
                     self.menu.menu()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'room':
+                        user_next_option = 'quit'
+                    else: 
+                        user_next_option = self.logic.normalize(input("> "))
+
+                    # user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
-                else:
+                elif user_input == 'quit':
                     self.leave_boddy_on_read()
             else:
                 #Should we make this line red??
                 print(red + "Please choose from available menu choices." + color_end)
                 print("Please choose from menu:")
                 self.menu.menu()
-            
-                user_next_option = self.logic.normalize(input("> "))
+                if mock_input != None:
+                    user_next_option = 'quit'
+                else: 
+                    user_next_option = self.logic.normalize(input("> "))
+
+                # user_next_option = self.logic.normalize(input("> "))
                 check_input(user_next_option) 
         
         check_input(response)

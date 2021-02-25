@@ -73,7 +73,7 @@ class Clue_Logic:
 
 
     def random_helper(self, start, stop):
-        random_number = random.randint(start, stop)
+        random_number = random.randrange(start, stop)
         return random_number
 
     def solution_deal(self):
