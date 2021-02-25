@@ -33,7 +33,8 @@ keyboard = "git_a_clue/assets_ascii/keyboard.txt"
 laptop = "git_a_clue/assets_ascii/laptop.txt"
 whiteboard = "git_a_clue/assets_ascii/killer_whiteboard.txt"
 ethernet = "git_a_clue/assets_ascii/ethernet_cord.txt"
-
+donut = "git_a_clue/assets_ascii/donut.txt"
+apple_pen = "git_a_clue/assets_ascii/apple_pen.txt"
 #***********color/color-combos***********
 white_and_red_background = "\033[4;37;41m"
 white_and_green_bkgrnd = "\033[4;30;42m"
@@ -79,7 +80,7 @@ class Prompt:
         
         """
         
-        greeting_pt2 = " Type (PLAY) to investigate, (RULES) to view the brief, or (QUIT) to leave boddy's death a mystery. "
+        greeting_pt2 = " Type (PLAY) to investigate, (RULES) to view the brief, or (QUIT) to leave John's death a mystery. "
         #TODOcenter computer a bit more!!
         print(print_ascii(computer_cf))
         time.sleep(2)
@@ -129,7 +130,7 @@ class Prompt:
             else:
                 print(red + "Please enter a valid option." + color_end)
 
-                print("Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery.")
+                print("Type (play) to investigate, (rules) to view the brief, or (quit) to leave John's death a mystery.")
                     
             
                 user_next_option = self.logic.normalize(input("> "))
@@ -570,7 +571,7 @@ class Prompt:
     def final_guess(self):
         final_accusation = []
 
-        print(f"Alright {self.avatar}, it's time to take the final whiteboard and see if you can avenge boddy & pass the test.")
+        print(f"Alright {self.avatar}, it's time to take the final whiteboard and see if you can avenge John & pass the test.")
 
         print("Who do you think did it?")
         self.sus_helper()
@@ -759,7 +760,7 @@ class Prompt:
         time.sleep(1)
 
         if final_accusation == self.logic.solution_list:
-            print(f"You did it! You solved boddy's murder!! It was {final_accusation[0]} with the {final_accusation[1]} in the {final_accusation[2]}")
+            print(f"You did it! You solved John's murder!! It was {final_accusation[0]} with the {final_accusation[1]} in the {final_accusation[2]}")
             #TODO: BRING ON THE ASCII
 
         else:   
@@ -814,29 +815,12 @@ class Prompt:
 
 
 
-        #XXX Ask for s. g. r
-        #XXXcheck against solution
-        #xxx return true or false
-        #xxx if true - you've avenged boddy'
-        #xxxif false - you failed and your code sucks.
-
-        #xxx reveal the solution with ascii?
-        #xxxplay again 
-        #XXX reset & start game
-        #XXX quit
-        #XXX leave on read
-        # roll = play again
-        # hand =show hand
-        # room
-
-
-
 
     def leave_boddy_on_read(self):
         self.logic.reset_tables()
         self.accused_person = []
         self.gadget_accusation = []
-        print("boddy hates a quitter - now his ghost will forever haunt your CSS.")
+        print("John hates a quitter - now his ghost will forever haunt your CSS.")
         #TODO:  ASCIIprint outline or a dead computer??
         # time.sleep(3)
         # os.system('cls' if os.name == 'nt' else 'clear')

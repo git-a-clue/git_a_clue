@@ -42,12 +42,12 @@ aqua = "\033[1;36m"
 
 class Clue_Logic: 
 
-    suspects = ['s1', 's2', 's3', 's4', 's5', 's6']
-    perma_suspects = ['s1', 's2', 's3', 's4', 's5', 's6']
-    gadgets = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6']
-    perma_gadgets = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6']
-    rooms = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7']
-    move_rooms = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7']
+    suspects = ['Roger Huba', 'Robin Apparicio', 'Phil Werner', 'Heather Cherewaty', 'Dario Thornhill', 'Teri Pfeffer']
+    perma_suspects = ['Roger Huba', 'Robin Apparicio', 'Phil Werner', 'Heather Cherewaty', 'Dario Thornhill', 'Teri Pfeffer']
+    gadgets = ['Death by Whiteboard', 'Apple Pencil shiv', 'Bludgeoned by Keyboard', 'Electrocuted by Laptop', 'Strangled by Ethernet', 'Poisoned Donuts']
+    perma_gadgets = ['Death by Whiteboard', 'Apple Pencil shiv', 'Bludgeoned by Keyboard', 'Electrocuted by Laptop', 'Strangled by Ethernet', 'Poisoned Donuts']
+    rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'John\'s Study']
+    move_rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'John\'s Study']
     solution_list = [] # call start_game_deal_cards on each list_from 
     player_hand = [] # call start_game_deal_cards 2x each list_from
     available_rooms_check = []
