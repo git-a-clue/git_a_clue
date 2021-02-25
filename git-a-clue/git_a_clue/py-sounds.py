@@ -1,8 +1,8 @@
 from playsound import playsound
 
 # playsound('/Users/kim/codefellows/401/git_a_clue/git-a-clue/git_a_clue/assets/sounds/door.mp3')
-playsound('/Users/kim/codefellows/401/git_a_clue/git-a-clue/git_a_clue/assets/sounds/magic_appear.mp3')
-
+# playsound('/Users/kim/codefellows/401/git_a_clue/git-a-clue/git_a_clue/assets/sounds/magic_appear.mp3')
+playsound('assets/sounds/door.mp3')
 
 # magic_appear is 9 sec long; 
 # from https://www.zapsplat.com/?s=magic+wand+success&post_type=music&sound-effect-category-id=

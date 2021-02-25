@@ -6,7 +6,7 @@ import time
 import random
 
 # *********** ASCII Variables ************
-dice_animation = "git_a_clue/assets_animation/animation"
+dice_animation = "assets_animation/animation"
 
 #***********color/color-combos***********
 white_and_red_background = "\033[4;37;41m"
@@ -147,7 +147,7 @@ class Clue_Logic:
         animate_ascii(dice_animation, 6, 3)
         for k in range(9):
             print("\033[A\033[A")
-        path = f"git_a_clue/assets_animation/animation_{roll - 1}.txt"
+        path = f"assets_animation/animation_{roll - 1}.txt"
         print(print_ascii(path))
         return roll
 
