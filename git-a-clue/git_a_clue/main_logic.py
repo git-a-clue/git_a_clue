@@ -1,11 +1,9 @@
-from .ascii_func import print_ascii
-from .ascii_func import animate_ascii
-# from termcolor import colored
-
+from ascii_func import print_ascii
+from ascii_func import animate_ascii
+from termcolor import colored
 import time
 # from playsound import playsound
 import random
-import re
 
 # *********** ASCII Variables ************
 dice_animation = "git_a_clue/assets_animation/animation"
@@ -44,12 +42,12 @@ aqua = "\033[1;36m"
 
 class Clue_Logic: 
 
-    suspects = ['Roger Huba', 'Robin Apparicio', 'Phil Werner', 'Heather Cherewaty', 'Dario Thornhill', 'Teri Pfeffer']
-    perma_suspects = ['Roger Huba', 'Robin Apparicio', 'Phil Werner', 'Heather Cherewaty', 'Dario Thornhill', 'Teri Pfeffer']
-    gadgets = ['Death by Whiteboard', 'Apple Pencil shiv', 'Bludgeoned by Keyboard', 'Electrocuted by Laptop', 'Strangled by Ethernet', 'Poisoned Donuts']
-    perma_gadgets = ['Death by Whiteboard', 'Apple Pencil shiv', 'Bludgeoned by Keyboard', 'Electrocuted by Laptop', 'Strangled by Ethernet', 'Poisoned Donuts']
-    rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'John\'s Study']
-    move_rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'John\'s Study']
+    suspects = ['s1', 's2', 's3', 's4', 's5', 's6']
+    perma_suspects = ['s1', 's2', 's3', 's4', 's5', 's6']
+    gadgets = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6']
+    perma_gadgets = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6']
+    rooms = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7']
+    move_rooms = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7']
     solution_list = [] # call start_game_deal_cards on each list_from 
     player_hand = [] # call start_game_deal_cards 2x each list_from
     available_rooms_check = []
@@ -147,10 +145,6 @@ class Clue_Logic:
     def roll_dice(self):
         roll = self.random_helper(1,6)
         animate_ascii(dice_animation, 6, 3)
-        for k in range(9):
-            print("\033[A\033[A")
-        path = f"git_a_clue/assets_animation/animation_{roll - 1}.txt"
-        print(print_ascii(path))
         return roll
 
     def eligible_rooms(self):
@@ -186,12 +180,15 @@ class Clue_Logic:
         self.solution_list.clear()
         self.player_hand.clear()
         self.available_rooms_check.clear()
-        self.suspects = ['Roger Huba', 'Robin Apparicio', 'Phil Werner', 'Heather Cherewaty', 'Dario Thornhill', 'Teri Pfeffer']
-        self.gadgets = ['Death by Whiteboard', 'Apple Pencil shiv', 'Bludgeoned by Keyboard', 'Electrocuted by Laptop', 'Strangled by Ethernet', 'Poisoned Donuts']
-        self.rooms = ['Student Kitchen', 'Katherine G. Johnson Ballroom', 'Co-working Hall', 'Lovelace', 'Babbage', 'Hopper', 'John\'s Study']
+        self.suspects = ['s1', 's2', 's3', 's4', 's5', 's6']
+        self.gadgets = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6']
+        self.rooms = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'r7']
         self.current_room = "Front Desk - Roll the dice to explore campus"
 
         
+
+
+
 # if __name__ == "__main__":
 #     test_logic = Clue_Logic()
 #     test_logic.eligible_rooms(5)
