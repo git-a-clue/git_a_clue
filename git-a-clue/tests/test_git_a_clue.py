@@ -7,8 +7,6 @@ from git_a_clue.menu_logic import Menu_Logic
 from git_a_clue.prompt import Prompt
 
 
-
-
 # @pytest.mark.skip("pending")
 def test_logic():
     actual = Clue_Logic.suspects[0]

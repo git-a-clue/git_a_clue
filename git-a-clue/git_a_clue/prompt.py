@@ -1,8 +1,10 @@
-from main_logic import Clue_Logic
-from menu_logic import Menu_Logic
-# from ascii_func import print_ascii
-# from ascii_func import animate_ascii
-from termcolor import colored
+
+
+from git_a_clue.main_logic import Clue_Logic
+from git_a_clue.menu_logic import Menu_Logic
+from git_a_clue.ascii_func import print_ascii
+from git_a_clue.ascii_func import animate_ascii
+# from termcolor import colored
 
 
 from playsound import playsound
@@ -135,8 +137,12 @@ class Prompt:
 
                 print("Type (play) to investigate, (rules) to view the brief, or (quit) to leave boddy's death a mystery.")
                     
-            
-                user_next_option = self.logic.normalize(input("> "))
+            if mock_input != None:
+                response = mock_input
+            else: 
+                response = self.logic.normalize(input("> "))   
+
+                # user_next_option = self.logic.normalize(input("> "))
                 print("  ")
                 print(white_and_red_background + greeting_pt2 + color_end)
                 user_next_option = self.logic.normalize(input("> "))
@@ -144,13 +150,18 @@ class Prompt:
         check_input(response)
 
 
-    def pick_a_player(self):
+    def pick_a_player(self, mock_input = None):
         choose_avatar = """
         Please choose you avatar from the following list.
         Type:"""
         print(choose_avatar)
         self.sus_helper()
-        response = self.logic.normalize(input("> "))        
+        if mock_input != None:
+            response = mock_input
+        else: 
+            response = self.logic.normalize(input("> "))   
+
+        # response = self.logic.normalize(input("> "))        
 
         def check_input(user_input):
             #Check if input is outside of people choices
@@ -199,7 +210,12 @@ class Prompt:
                 print("Vince's alibi checked out please choose from below:")
                 print("Type:")
                 self.sus_helper()
-                user_next_option = self.logic.normalize(input("> "))
+                if mock_input != None:
+                    response = mock_input
+                    user_next_option = 'quit'
+                else: 
+                    response = self.logic.normalize(input("> ")) 
+                    user_next_option = self.logic.normalize(input("> "))
                 check_input(user_next_option)
 
         check_input(response)
@@ -228,6 +244,11 @@ class Prompt:
         What would you like to do next?
         """)
         self.menu.menu()
+                if mock_input != None:
+            response = mock_input
+        else: 
+            response = self.logic.normalize(input("> "))   
+
         response = self.logic.normalize(input("> "))
 
         #VALIDATES & DIRECTS BASED ON USER CHOICE, RETURNS 'ERROR' IF USER ENTERS ANYTHING OTHER THAN A MENU OPTION
