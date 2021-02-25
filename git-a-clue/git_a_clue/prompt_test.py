@@ -541,14 +541,23 @@ class Prompt:
                 print("John thinks your code sucks, please choose from available suspects.")
                 print("Type:")
                 self.sus_helper()
-                user_next_option = self.logic.normalize(input("> "))
+                if mock_input == 'g':
+                    user_next_option = 'quit'
+                else:
+                    user_next_option = self.logic.normalize(input("> "))
+ 
+                # user_next_option = self.logic.normalize(input("> "))
                 check_input(user_next_option)     
             #check to ensure input is in the available options          
             elif user_input in self.lib.keys():
                 self.accused_person = []
                 self.accused_person.append(self.logic.perma_suspects[self.lib[user_input]])
                 #CALL THE NEXT FUNCTION
-                self.gad_accusation(self.accused_person)
+                if mock_input == 'a':
+                    user_next_option = 'quit'
+                else:
+
+                    self.gad_accusation(self.accused_person)
             #checks input against menu options
             elif self.menu.menu_validation(user_input) == True:
                 if user_input == "roll":
@@ -557,7 +566,12 @@ class Prompt:
                     print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'roll':
+                        user_next_option = 'quit'
+                    else:
+
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
@@ -565,7 +579,12 @@ class Prompt:
                     print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'rules':
+                        user_next_option = 'quit'
+                    else:
+
+                    
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
                     print(print_ascii(hand_o_cards))
@@ -574,7 +593,11 @@ class Prompt:
                     print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'hand':
+                        user_next_option = 'quit'
+                    else:
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
                     print("You are currently in ", str(self.logic.current_room))
@@ -582,7 +605,11 @@ class Prompt:
                     print("Please choose from available suspects.")
                     print("Type:")
                     self.sus_helper()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'room':
+                        user_next_option = 'quit'
+                    else:
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 else:
                     self.leave_boddy_on_read()
@@ -622,7 +649,11 @@ class Prompt:
                 print("Please choose from available gadgets.")
                 print("Type:")
                 self.gadget_helper()
-                user_next_option = self.logic.normalize(input("> "))
+                if mock_input == 'g':
+                    user_next_option = 'quit'
+                else:
+
+                    user_next_option = self.logic.normalize(input("> "))
                 check_input(user_next_option)     
             #check to ensure input is in the available options          
             elif user_input in self.lib.keys():
@@ -640,7 +671,11 @@ class Prompt:
                     print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'roll':
+                        user_next_option = 'quit'
+                    else:
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
@@ -648,7 +683,11 @@ class Prompt:
                     print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'rules':
+                        user_next_option = 'quit'
+                    else:
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
                     print(print_ascii(hand_o_cards))
@@ -657,7 +696,11 @@ class Prompt:
                     print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'hand':
+                        user_next_option = 'quit'
+                    else:
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
                     print("You're currently in ", str(self.logic.current_room))
@@ -665,7 +708,11 @@ class Prompt:
                     print("Please choose from available gadgets.")
                     print("Type:")
                     self.gadget_helper()
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'room':
+                        user_next_option = 'quit'
+                    else:
+
+                        user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 else:
                     self.leave_boddy_on_read()
