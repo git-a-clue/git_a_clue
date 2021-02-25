@@ -11,13 +11,11 @@ from git_a_clue.menu_logic_test import Menu_Logic
 # all pass with the addition of mock_input optional arguments
 # and with if/else statements around both expected input areas
 
+###########################
+# pick_a_player function tests
+###########################
 
-def test_capture_start_bad_input(capsys):
-    Prompt().start_game('green')
-    out,err = capsys.readouterr()
-    
-    assert 'Please enter a valid option' in out 
-    
+
 
 # @pytest.mark.skip("pending")  
 def test_capture_pick_bad_input(capsys):
@@ -26,7 +24,37 @@ def test_capture_pick_bad_input(capsys):
     
     assert 'Please choose you avatar' in out 
 
+# @pytest.mark.skip("pending")  
+def test_capture_start_play_input(capsys):
+    Prompt().start_game('play')
+    out,err = capsys.readouterr()
+    assert 'John hates a quitter' in out 
 
+# @pytest.mark.skip("pending")  
+def test_capture_start_roll_input(capsys):
+    Prompt().start_game('roll')
+    out,err = capsys.readouterr()
+    assert 'John hates a quitter' in out 
+
+# @pytest.mark.skip("pending")  
+def test_capture_start_rules_input(capsys):
+    Prompt().start_game('rules')
+    out,err = capsys.readouterr()
+    assert 'John hates a quitter' in out 
+
+# @pytest.mark.skip("pending")  
+def test_capture_start_hand_input(capsys):
+    Prompt().start_game('hand')
+    out,err = capsys.readouterr()
+    assert 'No hand dealt' in out 
+    
+# @pytest.mark.skip("pending")  
+def test_capture_start_room_input(capsys):
+    Prompt().start_game('room')
+    out,err = capsys.readouterr()
+    assert 'John hates a quitter' in out 
+
+##############################
 # @pytest.mark.skip("pending")    
 def test_capture_roll_bad_input(capsys):
     Prompt().roll_and_rooms('yellow')
@@ -58,13 +86,8 @@ def test_type_of_guess_bad_input(capsys):
     assert 'Please choose either (final) or (roll).' in captured.out
     
 
-# @pytest.mark.skip("pending")
+@pytest.mark.skip("pending")
 def test_final_guess_bad_input(capsys):
     actual = Prompt().final_guess('g','yellow','green')
     captured = capsys.readouterr()
     assert 'Please choose from available suspects..' in captured.out
-
-
-# https://dbader.org/blog/python-check-if-file-exists
-# https://www.devdungeon.com/content/python-use-stringio-capture-stdout-and-stderr
-# https://stackoverflow.com/questions/37918163/unittests-for-infinite-loop

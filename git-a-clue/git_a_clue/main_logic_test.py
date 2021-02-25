@@ -153,9 +153,12 @@ class Clue_Logic:
         print(print_ascii(path))
         return roll
 
-    def eligible_rooms(self):
-        perma_roll = self.roll_dice()
-        roll = perma_roll
+    def eligible_rooms(self, mock_roll = None):
+        if mock_roll != None:
+            roll = mock_roll
+        else:
+            perma_roll = self.roll_dice()
+            roll = perma_roll
         # print("ROLL", roll)
         #store variables
         alpha = ['a', 'b', 'c', 'd', 'e','f','g']

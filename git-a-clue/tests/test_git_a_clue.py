@@ -139,12 +139,14 @@ def test_roll_dice():
 # @pytest.mark.skip("pending")
 def test_eligible_rooms():
     clue = Clue_Logic()
-    # clue.current_room = 'r4'
-    li = clue.eligible_rooms()
-    if li[1] == 6:
-        assert len(li[0]) == li[1]+1
-    else:
-        assert len(li[0]) == li[1]
+    li = clue.eligible_rooms(4)
+    assert len(li[0]) == li[1]
+
+# @pytest.mark.skip("pending")
+def test_eligible_rooms_roll():
+    clue = Clue_Logic()
+    li = clue.eligible_rooms(6)
+    assert len(li[0]) == li[1]+1
 
 # @pytest.mark.skip("pending")
 def test_reset_tables():

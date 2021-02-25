@@ -112,32 +112,56 @@ class Prompt:
         def check_input(user_input):
             #Check if input is outside of people choices
             if user_input == "play" or user_input == "p":
-                self.pick_a_player()
+                if mock_input == 'play':
+                    self.pick_a_player(mock_input)
+                else: 
+                    self.pick_a_player()
             #check input against menu prompts
             elif self.menu.menu_validation(user_input) == True:
                 if user_input == "roll":
                     print(red + "Before we play, pick an avatar." + color_end)
                     print("  ")
                     print(white_and_red_background + greeting_pt2 + color_end)
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'roll':
+                        user_next_option = 'quit'
+                    else: 
+                        user_next_option = self.logic.normalize(input("> "))
+
+                    # user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "rules":
                     self.menu.rules()
                     print("  ")
                     print(white_and_red_background + greeting_pt2 + color_end)
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'rules':
+                        user_next_option = 'quit'
+                    else: 
+                        user_next_option = self.logic.normalize(input("> "))
+
+                    # user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
                     print(red + "No hand dealt" + color_end)
                     print("  ")
                     print(white_and_red_background + greeting_pt2 + color_end)
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'hand':
+                        user_next_option = 'quit'
+                    else: 
+                        user_next_option = self.logic.normalize(input("> "))
+
+
+                    # user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "room":
                     print(red + "Currently at the Front Desk, ready to play." + color_end)
                     print("  ")
                     print(white_and_red_background + greeting_pt2 + color_end)
-                    user_next_option = self.logic.normalize(input("> "))
+                    if mock_input == 'room':
+                        user_next_option = 'quit'
+                    else: 
+                        user_next_option = self.logic.normalize(input("> "))
+
+                    # user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "quit":
                     self.leave_boddy_on_read()
