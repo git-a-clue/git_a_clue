@@ -17,7 +17,7 @@ computer_cf = "git_a_clue/assets_ascii/clue_comp.txt"
 floorplan = "git_a_clue/assets_ascii/cf_floorplan.txt"
 dice_animation = "git_a_clue/assets_animation/animation"
 walk_hall = "git_a_clue/assets_ascii/walk_down_hall.txt"
-
+hand_o_cards = "git_a_clue/assets_ascii/hand_o_cards.txt"
 ascii_murder = "git_a_clue/assets_ascii/murder.txt"
 
 john_outline = "git_a_clue/assets_ascii/john_outline.txt"
@@ -38,10 +38,12 @@ ethernet = "git_a_clue/assets_ascii/ethernet_cord.txt"
 white_and_red_background = "\033[4;37;41m"
 white_and_green_bkgrnd = "\033[4;30;42m"
 blue = "\033[1;34m"
-red = "\033[0;31m"
+red = "\033[1;31m"
 color_end = "\033[0m"
 green = "\033[1;32m"
 aqua = "\033[1;36m"
+purple = "\033[1;35m"
+
 #******************************
 
 
@@ -220,6 +222,7 @@ class Prompt:
         Use them wisely:
         """, "green"))
         hand_holder = self.logic.player_hand
+        print(print_ascii(hand_o_cards))
         print(white_and_green_bkgrnd + ', '.join(hand_holder) + color_end)
         time.sleep(2)
 
@@ -243,6 +246,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
+                    print(print_ascii(hand_o_cards))
                     print(white_and_green_bkgrnd + ', '.join(hand_holder) + color_end)
                     print("  ")
                     print("Please choose from menu:")
@@ -266,7 +270,7 @@ class Prompt:
                 check_input(user_next_option) 
         
         check_input(response)
-    #TODO make letters a color
+    #XXX make letters a color
     #TODO when ask for room, remind where you are with you are here map
     def roll_and_rooms(self):
         alpha = [white_and_red_background + ' A ' + color_end, white_and_red_background + ' B ' + color_end, white_and_red_background + ' C ' + color_end, white_and_red_background + ' D ' + color_end, white_and_red_background + ' E ' + color_end, white_and_red_background + ' F ' + color_end, white_and_red_background + ' G ' + color_end]
@@ -281,6 +285,7 @@ class Prompt:
             print(room_loop)
             murder_rooms.append(room_loop)
             self.logic.available_rooms_check.append(rooms[i])
+        print("  ")
         response = self.logic.normalize(input("> "))
         # print("ROOOOOLLLLLLINNNNNNNGGGGGGGG ROOOOOMMMM", murder_rooms)
         # Response = room choice >
@@ -306,6 +311,13 @@ class Prompt:
                         self.logic.current_room.append(rooms[self.lib[user_input]])
                         #TODO print out new location (ascii)??
                         print(f"Moving to the {self.logic.current_room[0]}...")
+                        temp_room = self.logic.current_room[0]
+                        counter = 0
+                        for i in rooms:
+                            if temp_room == i:
+                                map = f"git_a_clue/assets_ascii/youare_{counter}.txt"
+                                print(print_ascii(map))
+                            counter += 1    
                         time.sleep(1)
                         #CALL THE NEXT FUNCTION
                         self.sus_accusation()
@@ -335,6 +347,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
+                    print(print_ascii(hand_o_cards))
                     print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print("Please choose from available rooms:")
@@ -408,6 +421,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
+                    print(print_ascii(hand_o_cards))
                     print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print("Please choose from available suspects.")
@@ -477,6 +491,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
+                    print(print_ascii(hand_o_cards))
                     print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print("Please choose from available gadgets.")
@@ -505,16 +520,16 @@ class Prompt:
 
         check_input(L2)
 
-
+    
     def type_of_guess(self):
         roll_or_warning = """
 
-        Would you like to (roll) again or make a (final) accusation? 
+        Would you like to (ROLL) again or make a (FINAL) accusation? 
 
         **************** WARNING **************** 
         Making a final accusation will end the game
         """
-        print(roll_or_warning)
+        print(colored(roll_or_warning, "red"))
         response = self.logic.normalize(input("> "))
 
         def check_input(user_input):
@@ -530,6 +545,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     check_input(user_next_option) 
                 elif user_input == "hand":
+                    print(print_ascii(hand_o_cards))
                     print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print(roll_or_warning)
@@ -590,6 +606,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     person_input(user_next_option) 
                 elif user_input == "hand":
+                    print(print_ascii(hand_o_cards))
                     print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print("Please choose from available suspects.")
@@ -653,6 +670,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "hand":
+                    print(print_ascii(hand_o_cards))
                     print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print("Please choose from available rooms.")
@@ -707,6 +725,7 @@ class Prompt:
                     user_next_option = self.logic.normalize(input("> "))
                     gadget_input(user_next_option) 
                 elif user_input == "hand":
+                    print(print_ascii(hand_o_cards))
                     print(white_and_green_bkgrnd + "This is your hand " + ', '.join(self.logic.player_hand) + color_end)
                     print("  ")
                     print("Please choose from available rooms.")
@@ -824,36 +843,35 @@ class Prompt:
 
     #TODOmake color letters
     def sus_helper(self):
-        print(f""" 
-        (a) for {self.logic.perma_suspects[0]} 
-        (b) for {self.logic.perma_suspects[1]}
-        (c) for {self.logic.perma_suspects[2]}
-        (d) for {self.logic.perma_suspects[3]}
-        (e) for {self.logic.perma_suspects[4]}
-        (f) for {self.logic.perma_suspects[5]}""")
+        print("        " + white_and_red_background + " A " + color_end + f" for {self.logic.perma_suspects[0]}") 
+        print("        " + white_and_red_background + " B " + color_end + f" for {self.logic.perma_suspects[1]}") 
+        print("        " + white_and_red_background + " C " + color_end + f" for {self.logic.perma_suspects[2]}") 
+        print("        " + white_and_red_background + " D " + color_end + f" for {self.logic.perma_suspects[3]}") 
+        print("        " + white_and_red_background + " E " + color_end + f" for {self.logic.perma_suspects[4]}") 
+        print("        " + white_and_red_background + " F " + color_end + f" for {self.logic.perma_suspects[5]}") 
+
         
         
 
     def gadget_helper(self):
-        print(f"""
-        (a) for {self.logic.perma_gadgets[0]} 
-        (b) for {self.logic.perma_gadgets[1]}
-        (c) for {self.logic.perma_gadgets[2]}
-        (d) for {self.logic.perma_gadgets[3]}
-        (e) for {self.logic.perma_gadgets[4]}
-        (f) for {self.logic.perma_gadgets[5]}
+        print("        " + white_and_red_background + " A " + color_end + f" for {self.logic.perma_gadgets[0]}") 
+        print("        " + white_and_red_background + " B " + color_end + f" for {self.logic.perma_gadgets[1]}") 
+        print("        " + white_and_red_background + " C " + color_end + f" for {self.logic.perma_gadgets[2]}") 
+        print("        " + white_and_red_background + " D " + color_end + f" for {self.logic.perma_gadgets[3]}") 
+        print("        " + white_and_red_background + " E " + color_end + f" for {self.logic.perma_gadgets[4]}") 
+        print("        " + white_and_red_background + " F " + color_end + f" for {self.logic.perma_gadgets[5]}")
 
-        """)
 
     def room_helper(self):
-        print(f"""
-        (a) for {self.logic.move_rooms[0]} 
-        (b) for {self.logic.move_rooms[1]}
-        (c) for {self.logic.move_rooms[2]}
-        (d) for {self.logic.move_rooms[3]}
-        (e) for {self.logic.move_rooms[4]}
-        (f) for {self.logic.move_rooms[5]}
-        (g) for {self.logic.move_rooms[6]}""")
+        print("        " + white_and_red_background + " A " + color_end + f" for {self.logic.move_rooms[0]}") 
+        print("        " + white_and_red_background + " B " + color_end + f" for {self.logic.move_rooms[1]}") 
+        print("        " + white_and_red_background + " C " + color_end + f" for {self.logic.move_rooms[2]}") 
+        print("        " + white_and_red_background + " D " + color_end + f" for {self.logic.move_rooms[3]}") 
+        print("        " + white_and_red_background + " E " + color_end + f" for {self.logic.move_rooms[4]}") 
+        print("        " + white_and_red_background + " F " + color_end + f" for {self.logic.move_rooms[5]}")
+        print("        " + white_and_red_background + " G " + color_end + f" for {self.logic.move_rooms[6]}")
+
+
 
 
 if __name__ == "__main__":

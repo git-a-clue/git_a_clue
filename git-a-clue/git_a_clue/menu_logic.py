@@ -17,6 +17,7 @@ class Menu_Logic:
         print("Type " + white_and_red_background + " hand  " + color_end + " to view your leads")
         print("Type " + white_and_red_background + " room  " + color_end + " to be reminded of where you are")
         print("Type " + white_and_red_background + " quit  " + color_end + " to leave John's death a mystery")
+        print("  ")
         # response = normalize(input("> "))
     
     def menu_validation(self, user_choice):
