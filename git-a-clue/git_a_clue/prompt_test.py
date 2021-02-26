@@ -283,7 +283,7 @@ class Prompt:
 
     def time_to_deal_and_pick(self, player_avatar, mock_input = None): 
         #deal a solution
-        self.logic.solution_deal()
+        # self.logic.solution_deal()
         
         #deal player hand
         # self.logic.player_hand_deal()
@@ -369,6 +369,7 @@ class Prompt:
                 self.menu.menu()
                 if mock_input != None:
                     user_next_option = 'quit'
+                    response = mock_input
                 else: 
                     user_next_option = self.logic.normalize(input("> "))
 
