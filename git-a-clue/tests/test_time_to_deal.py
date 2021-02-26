@@ -16,33 +16,27 @@ from git_a_clue.menu_logic_test import Menu_Logic
 ###########################
 
 
-@pytest.mark.skip("pending")  
+# @pytest.mark.skip("pending")  
 def test_capture_deal_bad_input(capsys):
     Prompt().time_to_deal_and_pick('kim','yellow')
     out,err = capsys.readouterr()
     
     assert 'Alright Detective kim' in out 
     
-@pytest.mark.skip("pending")  
-def test_capture_deal_roll_input(capsys):
-    Prompt().time_to_deal_and_pick('kim','roll')
-    out,err = capsys.readouterr()
-    assert 'pick an avatar' in out 
 
-
-@pytest.mark.skip("pending")  
+# @pytest.mark.skip("pending")  
 def test_capture_deal_rules_input(capsys):
     Prompt().time_to_deal_and_pick('kim','rules')
     out,err = capsys.readouterr()
     assert 'Please choose from menu:' in out 
 
-@pytest.mark.skip("pending")  
+# @pytest.mark.skip("pending")  
 def test_capture_deal_hand_input(capsys):
     Prompt().time_to_deal_and_pick('kim','hand')
     out,err = capsys.readouterr()
     assert 'Please choose from menu:' in out 
     
-@pytest.mark.skip("pending")  
+# @pytest.mark.skip("pending")  
 def test_capture_deal_room_input(capsys):
     Prompt().time_to_deal_and_pick('kim','room')
     out,err = capsys.readouterr()

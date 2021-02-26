@@ -4,7 +4,7 @@
 # from git_a_clue.menu_logic import Menu_Logic
 # from git_a_clue.ascii_func import print_ascii
 # from git_a_clue.ascii_func import animate_ascii
-# from termcolor import colored
+from termcolor import colored
 
 from .main_logic_test import Clue_Logic
 from .menu_logic_test import Menu_Logic
@@ -285,7 +285,7 @@ class Prompt:
         self.logic.solution_deal()
         
         #deal player hand
-        self.logic.player_hand_deal()
+        # self.logic.player_hand_deal()
 
         #PROMPT ACKNOWLEDGING avatar - MOVING TO NEXT OPTION
         print(colored(f"Alright Detective {player_avatar}. Welcome to Git_A_Clue. Let's go solve a murder!", "green"))
@@ -323,7 +323,7 @@ class Prompt:
             if self.menu.menu_validation(user_input) == True:
                 if user_input == "roll":
                     #CALL THE NEXT FUNCTION
-                    self.roll_and_rooms()
+                        self.roll_and_rooms()
                 elif user_input == "rules":
                     self.menu.rules()
                     print("Please choose from menu:")
@@ -1110,60 +1110,62 @@ class Prompt:
         if mock_place != None:
             final_accusation = [mock_sus,mock_gadget,mock_place]
             user_next_option = 'quit'
+            
 
-        if final_accusation == self.logic.solution_list:
-            print(f"You did it! You solved John's murder!! It was {final_accusation[0]} with the {final_accusation[1]} in the {final_accusation[2]}")
-            #TODO: BRING ON THE ASCII
 
-        else:   
-            print(f"What did you learn about learning, because you didn't solve this crime! It was {self.logic.solution_list[0]} with the {self.logic.solution_list[1]} in the {self.logic.solution_list[2]}")
-            #TODO: BRING ON THE ASCII
+        # if final_accusation == self.logic.solution_list:
+        #     print(f"You did it! You solved John's murder!! It was {final_accusation[0]} with the {final_accusation[1]} in the {final_accusation[2]}")
+        #     #TODO: BRING ON THE ASCII
 
-        print("What would you like to do next? Type (restart) to kill some more time, (rules) to view the brief, or (quit).")
-        response = self.logic.normalize(input("> "))     
-        def check_input(user_input):
-            #Check if input is outside of people choices
-            kill_some_time = "Type (restart) to kill some more time, (rules) to view the brief, or (quit)."
-            if user_input == "restart":
-                self.logic.reset_tables()
-                self.accused_person = []
-                self.gadget_accusation = []
-                time.sleep(2)
-                os.system('cls' if os.name == 'nt' else 'clear')
-                self.start_game()
+        # else:   
+        #     print(f"What did you learn about learning, because you didn't solve this crime! It was {self.logic.solution_list[0]} with the {self.logic.solution_list[1]} in the {self.logic.solution_list[2]}")
+        #     #TODO: BRING ON THE ASCII
 
-            elif self.menu.menu_validation(user_input) == True:
-                if user_input == "roll":
-                    self.logic.reset_tables()
-                    self.accused_person = []
-                    self.gadget_accusation = []
-                    time.sleep(2)
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    self.start_game()
-                elif user_input == "rules":
-                    self.menu.rules()
-                    print(kill_some_time)
-                    user_next_option = self.logic.normalize(input("> "))
-                    check_input(user_next_option) 
-                elif user_input == "hand":
-                    print("Cannot access hand after final accusation")
-                    print(kill_some_time)
-                    user_next_option = self.logic.normalize(input("> "))
-                    check_input(user_next_option) 
-                elif user_input == "room":
-                    print("Reset to the Front Desk, ready to play.")
-                    print(kill_some_time)
-                    user_next_option = self.logic.normalize(input("> "))
-                    check_input(user_next_option) 
-                else:
-                    self.leave_boddy_on_read()
-            else:
-                #Should we make this line red??
-                print(kill_some_time)
-                user_next_option = self.logic.normalize(input("> "))
-                check_input(user_next_option)
+        # print("What would you like to do next? Type (restart) to kill some more time, (rules) to view the brief, or (quit).")
+        # response = self.logic.normalize(input("> "))     
+        # def check_input(user_input):
+        #     #Check if input is outside of people choices
+        #     kill_some_time = "Type (restart) to kill some more time, (rules) to view the brief, or (quit)."
+        #     if user_input == "restart":
+        #         self.logic.reset_tables()
+        #         self.accused_person = []
+        #         self.gadget_accusation = []
+        #         time.sleep(2)
+        #         os.system('cls' if os.name == 'nt' else 'clear')
+        #         self.start_game()
 
-        check_input(response)
+        #     elif self.menu.menu_validation(user_input) == True:
+        #         if user_input == "roll":
+        #             self.logic.reset_tables()
+        #             self.accused_person = []
+        #             self.gadget_accusation = []
+        #             time.sleep(2)
+        #             os.system('cls' if os.name == 'nt' else 'clear')
+        #             self.start_game()
+        #         elif user_input == "rules":
+        #             self.menu.rules()
+        #             print(kill_some_time)
+        #             user_next_option = self.logic.normalize(input("> "))
+        #             check_input(user_next_option) 
+        #         elif user_input == "hand":
+        #             print("Cannot access hand after final accusation")
+        #             print(kill_some_time)
+        #             user_next_option = self.logic.normalize(input("> "))
+        #             check_input(user_next_option) 
+        #         elif user_input == "room":
+        #             print("Reset to the Front Desk, ready to play.")
+        #             print(kill_some_time)
+        #             user_next_option = self.logic.normalize(input("> "))
+        #             check_input(user_next_option) 
+        #         else:
+        #             self.leave_boddy_on_read()
+        #     else:
+        #         #Should we make this line red??
+        #         print(kill_some_time)
+        #         user_next_option = self.logic.normalize(input("> "))
+        #         check_input(user_next_option)
+
+        # check_input(response)
 
 
 
