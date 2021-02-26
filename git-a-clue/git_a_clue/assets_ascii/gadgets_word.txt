@@ -1,0 +1,10 @@
+
+  {blue}                                                  .o8                           .            
+                                                   "888                         .o8            
+                          .oooooooo  .oooo.    .oooo888   .oooooooo  .ooooo.  .o888oo  .oooo.o 
+                         888' `88b  `P  )88b  d88' `888  888' `88b  d88' `88b   888   d88(  "8 
+                         888   888   .oP"888  888   888  888   888  888ooo888   888   `"Y88b.  
+                         `88bod8P'  d8(  888  888   888  `88bod8P'  888    .o   888 . o.  )88b 
+                         `8oooooo.  `Y888""8o `Y8bod88P" `8oooooo.  `Y8bod8P'   "888" 8""888P' 
+                         d"     YD                       d"     YD                             
+                         "Y88888P'                       "Y88888P'      {end}
