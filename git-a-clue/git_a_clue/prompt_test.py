@@ -4,7 +4,8 @@
 # from git_a_clue.menu_logic import Menu_Logic
 # from git_a_clue.ascii_func import print_ascii
 # from git_a_clue.ascii_func import animate_ascii
-from termcolor import colored
+# import sys
+# from termcolor import colored
 
 from .main_logic_test import Clue_Logic
 from .menu_logic_test import Menu_Logic
@@ -288,19 +289,19 @@ class Prompt:
         # self.logic.player_hand_deal()
 
         #PROMPT ACKNOWLEDGING avatar - MOVING TO NEXT OPTION
-        print(colored(f"Alright Detective {player_avatar}. Welcome to Git_A_Clue. Let's go solve a murder!", "green"))
+        print(f"Alright Detective {player_avatar}. Welcome to Git_A_Clue. Let's go solve a murder!", "green")
         print(print_ascii(walk_hall))
         # TODO  AMBER // POSSIBLE ASCII PLAYER CARD/S VAGUE
         
         #TODO make link blue 
-        print(colored("""
+        print("""
         
         Here are your leads. Use the whiteboard to eliminate your suspects with this link:
 
         https://zealous-northcutt-ef89fd.netlify.app/scorecard.html 
         
         Use them wisely:
-        """, "green"))
+        """, "green")
         hand_holder = self.logic.player_hand
         print(print_ascii(hand_o_cards))
         print(white_and_green_bkgrnd + ', '.join(hand_holder) + color_end)
